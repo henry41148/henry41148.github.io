@@ -1,508 +1,379 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nguyen Dinh Danh | AI Engineer & Educator</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+  </head>
+  <body>
     <!-- Particles Background -->
     <div id="particles-js" class="particles-bg"></div>
-    
+
     <!-- Header -->
     <header>
-        <a href="#" class="logo">H<span>enry</span></a>
-        <nav>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </nav>
+      <a href="#" class="logo">H<span>enry</span></a>
+      <nav>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
     </header>
-    
+
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-image">
-            <img src="assets/images/profiles/green.jpg" alt="">
-        </div>
-        <div class="hero-content">
-            <h2 class="hero-subtitle">Hello, I'm</h2>
-            <h1 class="hero-title"><span>Henry</span> Nguyen</h1>
-            <p class="hero-description">Aspiring AI Engineer specializing in Machine Learning, Deep Learning, and Transformer models. Educator shaping the next generation of developers.</p>
-            <a href="#contact" class="btn">Get In Touch</a>
-        </div>
+      <div class="hero-image fade-in-out" style="--img:url('assets/images/profiles/green.jpg')">
+        <img src="assets/images/profiles/green.jpg" alt="Profile" />
+      </div>
+      
+      
+      
+      <div class="hero-content">
+        <h2 class="hero-subtitle fade-in-out">Hello, I'm</h2>
+        <h1 class="hero-title fade-in-out"><span>Henry</span> Nguyen</h1>
+        <p class="hero-description fade-in-out">
+          Aspiring AI Engineer specializing in Machine Learning, Deep Learning,
+          and Transformer models. Educator shaping the next generation of
+          developers.
+        </p>
+        <a href="#contact" class="btn fade-in-out">Get In Touch</a>
+      </div>
     </section>
-    
+
     <!-- About Section -->
     <section id="about">
-        <div class="section-header">
-            <h2 class="section-title">About Me</h2>
-            <p class="section-subtitle">AI Engineer, Educator, and Innovator passionate about transforming ideas into intelligent solutions</p>
+      <div class="section-header">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">
+          AI Engineer, Educator, and Innovator passionate about transforming
+          ideas into intelligent solutions
+        </p>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <h3>Innovator in AI & Machine Learning</h3>
+          <p>
+            I'm an AI Engineer with hands-on experience in NLP, Computer Vision,
+            and Transformer models. Currently pursuing Computer Science at Ton
+            Duc Thang University with a GPA of 8.47/10.
+          </p>
+          <p>
+            My passion lies in developing intelligent systems that solve
+            real-world problems, from medical diagnostics to weather
+            forecasting. I specialize in implementing models like CNN, LSTM,
+            RNN, and fine-tuning pretrained transformer models.
+          </p>
+          <p>
+            Beyond development, I'm deeply committed to education. I believe in
+            empowering the next generation of technologists through innovative
+            teaching methods and practical knowledge sharing.
+          </p>
         </div>
-        <div class="about-content">
-            <div class="about-text">
-                <h3>Innovator in AI & Machine Learning</h3>
-                <p>I'm an AI Engineer with hands-on experience in NLP, Computer Vision, and Transformer models. Currently pursuing Computer Science at Ton Duc Thang University with a GPA of 8.47/10.</p>
-                <p>My passion lies in developing intelligent systems that solve real-world problems, from medical diagnostics to weather forecasting. I specialize in implementing models like CNN, LSTM, RNN, and fine-tuning pretrained transformer models.</p>
-                <p>Beyond development, I'm deeply committed to education. I believe in empowering the next generation of technologists through innovative teaching methods and practical knowledge sharing.</p>
-            </div>
-            <div class="about-image">
-                <div class="cube">
-                    <div class="cube-face">AI & ML</div>
-                    <div class="cube-face">NLP</div>
-                    <div class="cube-face">Computer Vision</div>
-                    <div class="cube-face">Transformers</div>
-                    <div class="cube-face">Education</div>
-                    <div class="cube-face">Innovation</div>
-                </div>
-            </div>
+        <div class="about-image">
+          <div class="cube">
+            <div class="cube-face">AI & ML</div>
+            <div class="cube-face">NLP</div>
+            <div class="cube-face">Computer Vision</div>
+            <div class="cube-face">Transformers</div>
+            <div class="cube-face">Education</div>
+            <div class="cube-face">Innovation</div>
+          </div>
         </div>
+      </div>
     </section>
-    
+
     <!-- Experience Section -->
-    <section id="experience" style="background: rgba(2, 12, 27, 0.5);">
-        <div class="section-header">
-            <h2 class="section-title">Experience</h2>
-            <p class="section-subtitle">My professional journey combining AI engineering with education</p>
+    <section id="experience" class="glass-panel experience">
+      <div class="section-header">
+        <h2 class="section-title">Work Experience</h2>
+        <p class="section-subtitle">
+          My professional journey combining AI engineering with education
+        </p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="dot"></span>
+          <h3 class="timeline-title">Programming Teacher</h3>
+          <span class="timeline-company"
+            >Algorithmics International School</span
+          >
+          <span class="timeline-date">2022 - Present</span>
+          <p class="timeline-desc">
+            Deliver 15+ classes weekly across Python, AI, Web Dev, and Unity for
+            students aged 10–16, in both fully English and bilingual formats.
+          </p>
+          <p class="timeline-desc">
+            Co-designed an AI course now offered at local campus, covering
+            Polars for data analysis, classic ML models, and neural networks
+            using PyTorch.
+          </p>
+          <p class="timeline-desc">
+            Created a Pre-Unity course to prepare students in core math and
+            logic concepts; guided students through hands-on projects achieving
+            90%+ completion rate.
+          </p>
         </div>
-        <div class="timeline">
-            <!-- Visiting Teacher at VAS -->
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">2023 - Present</div>
-                    <h3 class="timeline-title">Visiting Teacher</h3>
-                    <h4 class="timeline-company">Vietnam Australia International School (VAS)</h4>
-                    <p class="timeline-description">Teaching game development to inspire the next generation of developers.</p>
-                    <ul>
-                        <li>Develop and deliver engaging game development curriculum</li>
-                        <li>Create hands-on activities focused on Unity and game design principles</li>
-                        <li>Guide students through complete game development lifecycles</li>
-                        <li>Foster creativity and problem-solving skills through project-based learning</li>
-                    </ul>
-                    <div class="timeline-highlight">Class size: 20 students</div>
-                </div>
-            </div>
-            
-            <!-- Programming Teacher -->
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">2022 - Present</div>
-                    <h3 class="timeline-title">Programming Teacher</h3>
-                    <h4 class="timeline-company">Algorithmics International School</h4>
-                    <p class="timeline-description">Deliver programming courses entirely in English to students of various levels.</p>
-                    <ul>
-                        <li>Teach Python (AI, Data, Application), Unity, and Web Development</li>
-                        <li>Develop project-based curricula to enhance coding proficiency</li>
-                        <li>Assess student progress and provide constructive feedback</li>
-                        <li>Foster critical thinking and problem-solving skills</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- ICON Academic Club -->
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">2021 - Present</div>
-                    <h3 class="timeline-title">Member</h3>
-                    <h4 class="timeline-company">ICON Academic Club, Ton Duc Thang University</h4>
-                    <p class="timeline-description">Participate in knowledge-sharing and IT competitions within the university community.</p>
-                    <ul>
-                        <li>Engage in academic discussions and collaborative projects</li>
-                        <li>Contribute to organizing technology events for students</li>
-                        <li>Enhance technical skills through workshops and competitions</li>
-                    </ul>
-                </div>
-            </div>
+
+        <div class="timeline-item">
+          <span class="dot"></span>
+          <h3 class="timeline-title">Visiting Teacher</h3>
+          <span class="timeline-company"
+            >Vietnam Australia International School</span
+          >
+          <span class="timeline-date">2021 - 2022</span>
+          <p class="timeline-desc">
+            Teach coding classes to 14–20 students per session in both fully
+            English and bilingual formats, fostering an engaging learning
+            environment.
+          </p>
+          <p class="timeline-desc">
+            Designed and delivered a 10-lesson Game Development course using
+            Roblox Studio, introducing students to game mechanics and Lua
+            scripting.
+          </p>
+          <p class="timeline-desc">
+            Co-designed and launched VAS's first cross-campus Esports
+            competition with 200+ participants.
+          </p>
         </div>
+      </div>
     </section>
-    
     <!-- Skills Section -->
     <section id="skills">
-        <div class="section-header">
-            <h2 class="section-title">Skills & Expertise</h2>
-            <p class="section-subtitle">Technical proficiency across multiple domains</p>
+      <div class="section-header">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <p class="section-subtitle">
+          Technical proficiency across multiple domains
+        </p>
+      </div>
+
+      <div class="skills-container">
+        <!-- AI & ML -->
+        <div class="skill-category">
+          <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
+          <div class="skill-tags">
+            <span class="skill-tag"
+              ><i class="fas fa-robot"></i> Machine Learning</span
+            >
+            <span class="skill-tag"
+              ><i class="fas fa-network-wired"></i> Deep Learning</span
+            >
+            <span class="skill-tag"><i class="fas fa-language"></i> NLP</span>
+            <span class="skill-tag"
+              ><i class="fas fa-eye"></i> Computer Vision</span
+            >
+            <span class="skill-tag"
+              ><i class="fas fa-project-diagram"></i> Transformers</span
+            >
+          </div>
         </div>
-        <div class="skills-container">
-            <div class="skill-category">
-                <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
-                <ul class="skill-list">
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>Machine Learning</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="95"></div>
-                        </div>
-                    </li>
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>Deep Learning</span>
-                            <span>92%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="92"></div>
-                        </div>
-                    </li>
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>NLP</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="90"></div>
-                        </div>
-                    </li>
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>Computer Vision</span>
-                            <span>88%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="88"></div>
-                        </div>
-                    </li>
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>Transformers</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="skill-category">
-                <h3><i class="fas fa-code"></i> Programming & Tech</h3>
-                <ul class="skill-list">
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>Python</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="95"></div>
-                        </div>
-                    </li>
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>Java</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
-                        </div>
-                    </li>
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>JavaScript</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="80"></div>
-                        </div>
-                    </li>
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>C/C++</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="75"></div>
-                        </div>
-                    </li>
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>SQL</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="90"></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="skill-category">
-                <h3><i class="fas fa-tools"></i> Tools & Frameworks</h3>
-                <ul class="skill-list">
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>PyTorch</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="90"></div>
-                        </div>
-                    </li>
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>TensorFlow</span>
-                            <span>88%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="88"></div>
-                        </div>
-                    </li>
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>Hugging Face</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
-                        </div>
-                    </li>
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>Node.js</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="80"></div>
-                        </div>
-                    </li>
-                    <li class="skill-item">
-                        <div class="skill-name">
-                            <span>Docker</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="75"></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+
+        <!-- Programming -->
+        <div class="skill-category">
+          <h3><i class="fas fa-code"></i> Programming & Tech</h3>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+            <span class="skill-tag"><i class="fab fa-java"></i> Java</span>
+            <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+            <span class="skill-tag"
+              ><i class="fas fa-copyright"></i> C/C++</span
+            >
+            <span class="skill-tag"><i class="fas fa-database"></i> SQL</span>
+          </div>
         </div>
+
+        <!-- Tools -->
+        <div class="skill-category">
+          <h3><i class="fas fa-tools"></i> Tools & Frameworks</h3>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="fas fa-fire"></i> PyTorch</span>
+            <span class="skill-tag"
+              ><i class="fas fa-brain"></i> TensorFlow</span
+            >
+            <span class="skill-tag"
+              ><i class="fas fa-smile"></i> Hugging Face</span
+            >
+            <span class="skill-tag"
+              ><i class="fab fa-node-js"></i> Node.js</span
+            >
+            <span class="skill-tag"><i class="fab fa-docker"></i> Docker</span>
+          </div>
+        </div>
+      </div>
     </section>
-    
+
     <!-- Projects Section -->
-    <section id="projects" style="background: rgba(2, 12, 27, 0.5);">
-        <div class="section-header">
-            <h2 class="section-title">Featured Projects</h2>
-            <p class="section-subtitle">Innovative solutions leveraging AI and machine learning</p>
+    <section id="projects" style="background: rgba(2, 12, 27, 0.5)">
+      <div class="section-header">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">
+          Innovative solutions leveraging AI and machine learning
+        </p>
+      </div>
+      <div class="projects-grid">
+        <!-- Medical Chatbot -->
+        <div class="project-card">
+          <div class="project-image">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Medical Chatbot</h3>
+            <p class="project-description">
+              AI-powered chatbot for medical queries and chest X-ray diagnosis
+              using ViT-GPT2 and T5 models.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">NLP</span>
+              <span class="tech-tag">Transformers</span>
+              <span class="tech-tag">Hugging Face</span>
+              <span class="tech-tag">Python</span>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://huggingface.co/spaces/henry41148/henry-space"
+                class="project-link"
+                target="_blank"
+                ><i class="fas fa-external-link-alt"></i> Live Demo</a
+              >
+              <a
+                href="https://youtu.be/nP55KBp5zhU"
+                class="project-link"
+                target="_blank"
+                ><i class="fab fa-youtube"></i> Video</a
+              >
+            </div>
+          </div>
         </div>
-        <div class="projects-grid">
-            <!-- Medical Chatbot -->
-            <div class="project-card">
-                <div class="project-image">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Medical Chatbot</h3>
-                    <p class="project-description">AI-powered chatbot for medical queries and chest X-ray diagnosis using ViT-GPT2 and T5 models.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">NLP</span>
-                        <span class="tech-tag">Transformers</span>
-                        <span class="tech-tag">Hugging Face</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://huggingface.co/spaces/henry41148/henry-space" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        <a href="https://youtu.be/nP55KBp5zhU" class="project-link" target="_blank"><i class="fab fa-youtube"></i> Video</a>
-                    </div>
-                </div>
+
+        <!-- Weather & Traffic App -->
+        <div class="project-card">
+          <div class="project-image">
+            <i class="fas fa-cloud-sun-rain"></i>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Weather & Traffic Forecasting</h3>
+            <p class="project-description">
+              IoT and ML-powered Android application for weather and traffic
+              predictions using sensor data.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">IoT</span>
+              <span class="tech-tag">Machine Learning</span>
+              <span class="tech-tag">Android</span>
+              <span class="tech-tag">Python</span>
             </div>
-            
-            <!-- Weather & Traffic App -->
-            <div class="project-card">
-                <div class="project-image">
-                    <i class="fas fa-cloud-sun-rain"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Weather & Traffic Forecasting</h3>
-                    <p class="project-description">IoT and ML-powered Android application for weather and traffic predictions using sensor data.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">IoT</span>
-                        <span class="tech-tag">Machine Learning</span>
-                        <span class="tech-tag">Android</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://youtu.be/ffcqR2XuSMw" class="project-link" target="_blank"><i class="fab fa-youtube"></i> Demo Video</a>
-                    </div>
-                </div>
+            <div class="project-links">
+              <a
+                href="https://youtu.be/ffcqR2XuSMw"
+                class="project-link"
+                target="_blank"
+                ><i class="fab fa-youtube"></i> Demo Video</a
+              >
             </div>
-            
-            <!-- Big Data Analytics -->
-            <div class="project-card">
-                <div class="project-image">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Big Data Analytics</h3>
-                    <p class="project-description">PCY algorithm implementation in PySpark for large-scale shopping basket data analysis.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Big Data</span>
-                        <span class="tech-tag">PySpark</span>
-                        <span class="tech-tag">PCY Algorithm</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/henry41148/BigData-PCY-Pyspark/tree/main" class="project-link" target="_blank"><i class="fab fa-github"></i> Source Code</a>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <!-- Big Data Analytics -->
+        <div class="project-card">
+          <div class="project-image">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Big Data Analytics</h3>
+            <p class="project-description">
+              PCY algorithm implementation in PySpark for large-scale shopping
+              basket data analysis.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">Big Data</span>
+              <span class="tech-tag">PySpark</span>
+              <span class="tech-tag">PCY Algorithm</span>
+              <span class="tech-tag">Python</span>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://github.com/henry41148/BigData-PCY-Pyspark/tree/main"
+                class="project-link"
+                target="_blank"
+                ><i class="fab fa-github"></i> Source Code</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-    
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="section-header">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="section-subtitle">Feel free to reach out for collaborations or just a friendly hello</p>
+    <!-- Footer Contact -->
+    <footer id="contact-footer">
+      <div class="footer-container">
+        <!-- Left side -->
+        <div class="footer-about">
+          <h2 class="footer-title">Get In Touch</h2>
+          <p class="footer-subtitle">
+            I’m always open to new opportunities, collaborations, or just a
+            friendly chat.
+          </p>
         </div>
-        <div class="contact-container">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h3>Phone</h3>
-                        <a href="tel:+84365739985">(+84) 365 739 985</a>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h3>Email</h3>
-                        <a href="mailto:henry.41148@gmail.com">henry.41148@gmail.com</a>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h3>Location</h3>
-                        <p>Ho Chi Minh City, Viet Nam</p>
-                    </div>
-                </div>
-                
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/danh-nguy%E1%BB%85n-638901317/" class="social-link" target="_blank">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://www.kaggle.com/henry41148" class="social-link" target="_blank">
-                        <i class="fab fa-kaggle"></i>
-                    </a>
-                    <a href="https://github.com/henry41148" class="social-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://youtube.com" class="social-link" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-            </div>
+
+        <!-- Right side -->
+
+        <div class="footer-contact">
+          <div class="contact-item">
+            <i class="fas fa-user"></i>
+            <span>Nguyen Dinh Danh</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <a href="tel:+84365739985">(+84) 365 739 985</a>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:henry.41148@gmail.com">henry.41148@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <a href="https://maps.app.goo.gl/ni1wZWvUjiJU44q48"
+              >Ho Chi Minh City, Viet Nam</a
+            >
+          </div>
+
+          <!-- New line with name -->
+
+          <div class="social-links">
+            <a
+              href="https://www.linkedin.com/in/danh-nguy%E1%BB%85n-638901317/"
+              target="_blank"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a href="https://www.kaggle.com/henry41148" target="_blank"
+              ><i class="fab fa-kaggle"></i
+            ></a>
+            <a href="https://github.com/henry41148" target="_blank"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a href="https://youtube.com" target="_blank"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
         </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer>
-        <p class="footer-text">© 2023 Nguyen Dinh Danh. All Rights Reserved.</p>
+      </div>
     </footer>
-    
-    <script>
-        // Initialize Particles.js
-        particlesJS("particles-js", {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#64ffda" },
-                shape: { type: "circle", stroke: { width: 0, color: "#000000" } },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#64ffda",
-                    opacity: 0.2,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: "none",
-                    random: true,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "grab" },
-                    onclick: { enable: true, mode: "push" },
-                    resize: true
-                }
-            },
-            retina_detect: true
-        });
-        
-        // Animate skill bars when scrolled into view
-        const skillBars = document.querySelectorAll('.skill-progress');
-        
-        const animateSkills = () => {
-            skillBars.forEach(bar => {
-                const rect = bar.getBoundingClientRect();
-                const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
-                
-                if (isVisible && !bar.dataset.animated) {
-                    bar.style.width = bar.dataset.width + '%';
-                    bar.dataset.animated = true;
-                }
-            });
-        };
-        
-        // Initialize animations on page load and scroll
-        window.addEventListener('load', animateSkills);
-        window.addEventListener('scroll', animateSkills);
-        
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Timeline item animations
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        
-        const animateTimeline = () => {
-            timelineItems.forEach(item => {
-                const rect = item.getBoundingClientRect();
-                const isVisible = rect.top < window.innerHeight - 100 && rect.bottom >= 0;
-                
-                if (isVisible && !item.dataset.animated) {
-                    item.style.animation = 'fadeInUp 1s forwards';
-                    item.dataset.animated = true;
-                }
-            });
-        };
-        
-        window.addEventListener('load', animateTimeline);
-        window.addEventListener('scroll', animateTimeline);
-    </script>
-</body>
+  </body>
 </html>
