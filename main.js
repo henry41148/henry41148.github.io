@@ -101,7 +101,7 @@ const heroEntranceTl = gsap.timeline({
 
 // Use your excellent forEach loop to build the entrance sequence
 elementHero.forEach((el, index) => {
-    const startTime = index * 0.4;
+    const startTime = index * 0.6;
 
     if (el.classList.contains("hero-image")) {
         heroEntranceTl
