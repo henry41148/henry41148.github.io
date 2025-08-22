@@ -25,7 +25,10 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
 }
-
+.scroll-container {
+  height: 100vh;
+  overflow-y: auto;
+}
 .particles-bg {
   position: fixed;
   top: 0;
@@ -43,10 +46,10 @@ header {
   padding: 20px 5%;
   display: flex;
   justify-content: space-between;
+  height: 120px;
   align-items: center;
-  background: rgba(10, 25, 47, 0.9);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+  background: rgba(10, 25, 47, 0); 
+  border-bottom: 1px solid rgba(100, 255, 218, 0); 
 }
 
 .logo {
@@ -107,175 +110,187 @@ header {
   gap: 3em;
 }
 
-/* ---------- HERO IMAGE (IMAGE GLITCH ADAPTATION) ---------- */
+/* --- START: GLITCH EFFECT CODE --- */
+.hero-image-part{
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+}
+/* This is the main container for the image and all its glitch layers */
 .hero-image {
-  --img: url('assets/images/profiles/green.jpg'); /* inline override allowed */
-  position: relative;
-  width: 30%;
+  width: 350px;
   height: 430px;
-  overflow: hidden;
-  border-radius: 5px;
-  background: var(--img) center/cover no-repeat;
-  box-shadow: 0 6px 30px rgba(0,0,0,0.45);
-  border: 2px solid rgba(70, 216, 182, 0.5);
-  backdrop-filter: blur(10px);
-}
-
-/* keep <img> for accessibility/preloading */
-.hero-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  border-radius: 7px;
+  border: 5px solid rgba(70, 216, 182, 0.438);
+  backdrop-filter: blur(15px);
   position: relative;
-  z-index: 1;
-  animation: scan 4s infinite linear, flicker 0.2s infinite;
-  /* keep visible; pseudo-elements will overlay for glitch */
+  /* overflow: hidden; */
+  background: url("assets/images/profiles/green.jpg");
+  background-size: cover; 
 }
 
-/* Reuse your exact keyframes (copied) for clip-based slice animation */
-/* ---- REVISED KEYFRAMES FOR 430px HEIGHT ---- */
+/* This targets the two main "slice" glitch layers */
+.hero-image::before, .hero-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit; /* This makes it use the parent's background-image */
+  background-size: cover;
+}
+
+/* This applies the first slice animation */
+.hero-image::before {
+  animation: glitch-before 2.5s linear infinite alternate both;
+}
+
+/* This applies the second slice animation */
+.hero-image::after {
+
+  animation: glitch-after 2.5s linear infinite alternate both;
+}
+
+/* This is the container for the R, G, and B color channels */
+.hero-image .channel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit; 
+  background-size: cover;
+  mix-blend-mode: screen; 
+}
+
+/* This is a colored overlay for each channel */
+.hero-image .channel::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  mix-blend-mode: multiply; /* This applies the color to the image */
+}
+
+/* Red Channel Layer */
+.hero-image .r {
+  animation: rgb-shift-r 2.5s steps(1, jump-end) infinite alternate both;
+}
+.hero-image .r::before {
+  background: #f00; /* Red color overlay */
+}
+
+/* Green Channel Layer */
+.hero-image .g {
+  animation: rgb-shift-g 2.5s steps(1, jump-end) infinite alternate both;
+}
+.hero-image .g::before {
+  background: #0f0; /* Green color overlay */
+}
+
+/* Blue Channel Layer */
+.hero-image .b {
+  animation: rgb-shift-b 2.5s steps(1, jump-end) infinite alternate both;
+}
+.hero-image .b::before {
+  background: #00f; /* Blue color overlay */
+}
+
+
+/* -- KEYFRAMES (The animations themselves, generated from the SCSS) -- */
+
+/* Animation for the Red Channel Shake */
+@keyframes rgb-shift-r {
+  0%, 2%, 4%, 6%, 8%, 10%, 12%, 14%, 16%, 18%, 20%, 23%, 26%, 30% { transform: translate(2%, -0.2%); }
+  33%, 100% { transform: none; }
+}
+
+/* Animation for the Green Channel Shake */
+@keyframes rgb-shift-g {
+  0%, 2%, 4%, 6%, 8%, 10%, 12%, 14%, 16%, 18%, 20%, 23%, 26%, 30% { transform: translate(-2.4%, 0.4%); }
+  33%, 100% { transform: none; }
+}
+
+/* Animation for the Blue Channel Shake */
+@keyframes rgb-shift-b {
+  0%, 2%, 4%, 6%, 8%, 10%, 12%, 14%, 16%, 18%, 20%, 23%, 26%, 30% { transform: translate(1.3%, -0.1%); }
+  33%, 100% { transform: none; }
+}
+
+
+/* Animation for the second glitchy slice */
+/* First glitch slice */
+@keyframes glitch-before {
+  0%   { clip-path: polygon(0% 65%, 100% 65%, 100% 70%, 0% 70%); transform: translate(-3%, 0.2%); }
+  5%   { clip-path: polygon(0% 23%, 100% 23%, 100% 28%, 0% 28%); transform: translate(5%, -0.1%); }
+  10%   { clip-path: polygon(0% 40%, 100% 40%, 100% 45%, 0% 45%); transform: translate(-2%, 0.3%); }
+  15%   { clip-path: polygon(0% 12%, 100% 12%, 100% 17%, 0% 17%); transform: translate(4%, -0.2%); }
+  20%   { clip-path: polygon(0% 80%, 100% 80%, 100% 85%, 0% 85%); transform: translate(-5%, 0.1%); }
+  25%  { clip-path: polygon(0% 50%, 100% 50%, 100% 55%, 0% 55%); transform: translate(3%, -0.3%); }
+  30%  { clip-path: polygon(0% 72%, 100% 72%, 100% 77%, 0% 77%); transform: translate(-4%, 0.2%); }
+  35%  { clip-path: polygon(0% 30%, 100% 30%, 100% 35%, 0% 35%); transform: translate(6%, -0.2%); }
+  40%  { clip-path: polygon(0% 10%, 100% 10%, 100% 15%, 0% 15%); transform: translate(-3%, 0.1%); }
+  45%  { clip-path: polygon(0% 88%, 100% 88%, 100% 95%, 0% 95%); transform: translate(-6%, 0.3%); }
+  50%, 100% { clip-path: none; transform: none; }
+}
+
+/* Second glitch slice */
+@keyframes glitch-after {
+  0%   { clip-path: polygon(0% 33%, 100% 33%, 100% 35%, 0% 35%); transform: translate(7%, -0.4%); }
+  5%   { clip-path: polygon(0% 76%, 100% 76%, 100% 78%, 0% 78%); transform: translate(-2%, 0.1%); }
+  10%  { clip-path: polygon(0% 20%, 100% 20%, 100% 22%, 0% 22%); transform: translate(3%, 0.2%); }
+  15%  { clip-path: polygon(0% 60%, 100% 60%, 100% 62%, 0% 62%); transform: translate(-5%, -0.3%); }
+  20%  { clip-path: polygon(0% 42%, 100% 42%, 100% 44%, 0% 44%); transform: translate(4%, 0.3%); }
+  25%  { clip-path: polygon(0% 15%, 100% 15%, 100% 17%, 0% 17%); transform: translate(-3%, -0.1%); }
+  30%  { clip-path: polygon(0% 70%, 100% 70%, 100% 72%, 0% 72%); transform: translate(5%, 0.2%); }
+  35%  { clip-path: polygon(0% 5%, 100% 5%, 100% 7%, 0% 7%); transform: translate(-6%, -0.2%); }
+  40%  { clip-path: polygon(0% 55%, 100% 55%, 100% 57%, 0% 57%); transform: translate(2%, 0.4%); }
+  45%  { clip-path: polygon(0% 45%, 100% 45%, 100% 47%, 0% 47%); transform: translate(4%, -0.2%); }
+  50%, 100% { clip-path: none; transform: none; }
+}
+
+
 @-webkit-keyframes noise-anim {
-  0% { clip: rect(389px, 9999px, 410px, 0); }
-  5% { clip: rect(24px, 9999px, 162px, 0); }
-  10% { clip: rect(343px, 9999px, 116px, 0); }
-  15% { clip: rect(222px, 9999px, 368px, 0); }
-  20% { clip: rect(112px, 9999px, 186px, 0); }
-  25% { clip: rect(289px, 9999px, 125px, 0); }
-  30% { clip: rect(115px, 9999px, 338px, 0); }
-  35% { clip: rect(357px, 9999px, 297px, 0); }
-  40% { clip: rect(24px, 9999px, 422px, 0); }
-  45% { clip: rect(181px, 9999px, 33px, 0); }
-  50% { clip: rect(93px, 9999px, 326px, 0); }
-  55% { clip: rect(268px, 9999px, 85px, 0); }
-  60% { clip: rect(403px, 9999px, 228px, 0); }
-  65% { clip: rect(44px, 9999px, 311px, 0); }
-  70% { clip: rect(17px, 9999px, 430px, 0); }
-  75% { clip: rect(374px, 9999px, 166px, 0); }
-  80% { clip: rect(10px, 9999px, 204px, 0); }
-  85% { clip: rect(422px, 9999px, 331px, 0); }
-  90% { clip: rect(93px, 9999px, 398px, 0); }
-  95% { clip: rect(223px, 9999px, 107px, 0); }
-  100% { clip: rect(292px, 9999px, 188px, 0); }
+  0%   { clip: rect(0px, 9999px, 5px, 0); }
+  25%  { clip: rect(100px, 9999px, 105px, 0); }
+  50%  { clip: rect(220px, 9999px, 225px, 0); }
+  75%  { clip: rect(340px, 9999px, 345px, 0); }
+  100% { clip: rect(430px, 9999px, 435px, 0); }
 }
 
 @keyframes noise-anim {
-  /* Use the same values for the standard version */
-  0% { clip: rect(389px, 9999px, 410px, 0); }
-  5% { clip: rect(24px, 9999px, 162px, 0); }
-  10% { clip: rect(343px, 9999px, 116px, 0); }
-  15% { clip: rect(222px, 9999px, 368px, 0); }
-  20% { clip: rect(12px, 9999px, 186px, 0); }
-  25% { clip: rect(289px, 9999px, 125px, 0); }
-  30% { clip: rect(215px, 9999px, 338px, 0); }
-  35% { clip: rect(357px, 9999px, 297px, 0); }
-  40% { clip: rect(244px, 9999px, 422px, 0); }
-  45% { clip: rect(181px, 9999px, 33px, 0); }
-  50% { clip: rect(193px, 9999px, 326px, 0); }
-  55% { clip: rect(268px, 9999px, 185px, 0); }
-  60% { clip: rect(403px, 9999px, 228px, 0); }
-  65% { clip: rect(44px, 9999px, 311px, 0); }
-  70% { clip: rect(17px, 9999px, 430px, 0); }
-  75% { clip: rect(374px, 9999px, 166px, 0); }
-  80% { clip: rect(10px, 9999px, 204px, 0); }
-  85% { clip: rect(422px, 9999px, 231px, 0); }
-  90% { clip: rect(193px, 9999px, 398px, 0); }
-  95% { clip: rect(223px, 9999px, 107px, 0); }
-  100% { clip: rect(292px, 9999px, 188px, 0); }
+  0%   { clip: rect(0px, 9999px, 5px, 0); }
+  25%  { clip: rect(100px, 9999px, 105px, 0); }
+  50%  { clip: rect(220px, 9999px, 225px, 0); }
+  75%  { clip: rect(340px, 9999px, 345px, 0); }
+  100% { clip: rect(430px, 9999px, 435px, 0); }
 }
 
 @keyframes scan {
-  0%   { clip: rect(0px, 9999px, 40px, 0); }       /* start top */
+  0%   { clip: rect(0px, 9999px, 10px, 0); }       /* start top */
   50%  { clip: rect(390px, 9999px, 430px, 0); }    /* move to bottom */
-  100% { clip: rect(0px, 9999px, 40px , 0); }       /* back to top */
+  100% { clip: rect(0px, 9999px, 10px , 0); }       /* back to top */
 }
 @keyframes flicker {
   0%   { opacity: 1; }
-  50%  { opacity: 0.3; }
+  50%  { opacity: 0.95; }
   100% { opacity: 1; }
 }
-/* --- PSEUDO LAYERS: green/blue offset + red offset ---
-/* left/green-blue fringe */
-.hero-image::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--img) center/cover no-repeat;
-  mix-blend-mode: screen;
-  /* transform: translateX(-6px); */
-  scale:(2);
-  opacity: 0.5;
-  z-index: 4;
-  filter: hue-rotate(100deg) saturate(2) blur(1px) contrast(1.5);
-  /* animate clip to create horizontal slices like the text effect */
-  -webkit-animation: noise-anim 5s infinite linear alternate-reverse, flicker 0.2s infinite;
-  animation: noise-anim 5s infinite linear alternate-reverse;
-  pointer-events: none;
-}
-
-/* right/red fringe (slightly different timing) */
-.hero-image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  scale:(2);
-
-  background: var(--img) center/cover no-repeat;
-  mix-blend-mode: screen;
-  opacity: 0.45;
-  z-index: 5;
-  filter: hue-rotate(-100deg) saturate(1.5) blur(1px) contrast(1.1);
-  /* use the other keyframe with slightly different duration for variation */
-  -webkit-animation: noise-anim 6s infinite linear alternate-reverse;
-  animation: noise-anim 6s infinite linear alternate-reverse;
-  pointer-events: none;
-}
-
-/* subtle static overlay to emulate TV noise */
-.hero-image::after {
-  /* ensure both red fringe and noise can coexist: we add small grain via gradient on a stacked element */
-  background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), /* fine grain */
-    var(--img);
-  background-blend-mode: overlay;
-  background-size: auto, cover;
-} */
-
-/* separate noise strip layer for scanlines/grain (optional) */
-.hero-image .glitch-grain {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  z-index: 6;
-  mix-blend-mode: overlay;
-  opacity: 0.12;
-  background-image:
-    linear-gradient(transparent 50%, rgba(255,255,255,0.02) 50%),
-    repeating-linear-gradient(180deg, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 2px, rgba(0,0,0,0.06) 3px);
-  background-size: 100% 100%, 100% 4px;
-  animation: noiseShift 0.12s steps(2) infinite;
-}
-
-/* tiny background jitter to emulate static movement */
-@keyframes noiseShift {
-  0% { background-position: 0 0, 0 0; }
-  50% { background-position: -6% 6%, 0 -2px; }
-  100% { background-position: 0 0, 0 0; }
-}
-
-/* OPTIONAL: brief stronger glitches (flash on demand via class toggle) */
-.hero-image.glitch-strong::before,
-.hero-image.glitch-strong::after {
-  opacity: 0.9;
-  transform: translateX(-18px) scale(1.02);
-  filter: blur(1.8px) saturate(1.5);
-  transition: none;
-}
-
-
-.hero-content {
+.hero-content-part{
   width: 60%;
+  display: flex;
+  justify-content: flex-start;
+}
+/* --- END: GLITCH EFFECT CODE --- */
+.hero-content {
+  width: 100%;
+  /* min-width: 50%; */
   z-index: 2;
+
 }
 
 .hero-subtitle {
@@ -376,12 +391,13 @@ section {
 
 /* About Section */
 .about-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 50px;
   align-items: center;
 }
-
+.about-text {
+  width: 50%;
+}
 .about-text h3 {
   font-size: 2rem;
   margin-bottom: 25px;
@@ -396,6 +412,7 @@ section {
 .about-image {
   position: relative;
   perspective: 1000px;
+  width: 50%;
 }
 
 .cube {
@@ -443,7 +460,10 @@ section {
 .cube-face:nth-child(6) {
   transform: rotateX(-90deg) translateZ(150px);
 }
-
+@keyframes rotate {
+  0% { transform: rotateX(-25deg) rotateY(0deg); }
+  100% { transform: rotateX(-25deg) rotateY(360deg); }
+}
 /* Experience Section */
 .timeline {
   position: relative;
@@ -465,10 +485,10 @@ section {
   margin-bottom: 50px;
   position: relative;
   padding-left: 40px;
-
+  border: 1px solid #64ffdb6d  ;
   padding: 25px;
-  border-radius: var(--border-radius);
-  background: rgba(10, 10, 20, 0.3);
+  border-radius: 10px;
+  background: rgba(52, 52, 78, 0.3);
 }
 
 /* .timeline-item:hover {
@@ -568,7 +588,7 @@ section {
   align-items: center;
   gap: 6px;
   backdrop-filter: blur(6px);
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
 }
 
 .skill-tag:hover {

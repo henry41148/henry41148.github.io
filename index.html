@@ -18,6 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
   </head>
   <body>
     <!-- Particles Background -->
@@ -36,51 +37,58 @@
         </div>
       </nav>
     </header>
-
+    <main class = ".scroll-container">
     <!-- Hero Section -->
     <section class="hero">
-      <div class="hero-image fade-in-out" style="--img:url('assets/images/profiles/green.jpg')">
-        <img src="assets/images/profiles/green.jpg" alt="Profile" />
+      <div class="hero-image-part">
+        <div class="hero-image fade-in-out">
+          <!-- <img src="assets/images/profiles/green.jpg" alt="Profile" /> -->
+          <div class="channel r"></div>
+          <div class="channel g"></div>
+          <div class="channel b"></div>
+        </div>
       </div>
-      
-      
-      
-      <div class="hero-content">
-        <h2 class="hero-subtitle fade-in-out">Hello, I'm</h2>
-        <h1 class="hero-title fade-in-out"><span>Henry</span> Nguyen</h1>
-        <p class="hero-description fade-in-out">
-          Aspiring AI Engineer specializing in Machine Learning, Deep Learning,
-          and Transformer models. Educator shaping the next generation of
-          developers.
-        </p>
-        <a href="#contact" class="btn fade-in-out">Get In Touch</a>
+
+      <div class="hero-content-part">
+        <div class="hero-content">
+          <h2 class="hero-subtitle fade-in-out">Hello, I'm</h2>
+          <h1 class="hero-title fade-in-out"><span>Henry</span> Nguyen</h1>
+          <p class="hero-description fade-in-out">
+            Aspiring AI Engineer specializing in Machine Learning, Deep
+            Learning, and Transformer models. Educator shaping the next
+            generation of developers.
+          </p>
+          <a href="#contact" class="btn fade-in-out">Get In Touch</a>
+        </div>
       </div>
     </section>
 
     <!-- About Section -->
     <section id="about">
-      <div class="section-header">
-        <h2 class="section-title">About Me</h2>
-        <p class="section-subtitle">
+      <div class="section-header about-header">
+        <h2 class="section-title scramble-about">About Me</h2>
+        <p class="section-subtitle scramble-about scramble-about2">
           AI Engineer, Educator, and Innovator passionate about transforming
           ideas into intelligent solutions
         </p>
       </div>
       <div class="about-content">
         <div class="about-text">
-          <h3>Innovator in AI & Machine Learning</h3>
-          <p>
+          <h3 class="scramble-about scramble-about2">
+            Innovator in AI & Machine Learning
+          </h3>
+          <p class="scramble-about scramble-about2">
             I'm an AI Engineer with hands-on experience in NLP, Computer Vision,
             and Transformer models. Currently pursuing Computer Science at Ton
             Duc Thang University with a GPA of 8.47/10.
           </p>
-          <p>
+          <p class="scramble-about scramble-about2">
             My passion lies in developing intelligent systems that solve
             real-world problems, from medical diagnostics to weather
             forecasting. I specialize in implementing models like CNN, LSTM,
             RNN, and fine-tuning pretrained transformer models.
           </p>
-          <p>
+          <p class="scramble-about scramble-about2">
             Beyond development, I'm deeply committed to education. I believe in
             empowering the next generation of technologists through innovative
             teaching methods and practical knowledge sharing.
@@ -93,7 +101,7 @@
             <div class="cube-face">Computer Vision</div>
             <div class="cube-face">Transformers</div>
             <div class="cube-face">Education</div>
-            <div class="cube-face">Innovation</div>
+            <div class="cube-face"></div>
           </div>
         </div>
       </div>
@@ -101,9 +109,9 @@
 
     <!-- Experience Section -->
     <section id="experience" class="glass-panel experience">
-      <div class="section-header">
-        <h2 class="section-title">Work Experience</h2>
-        <p class="section-subtitle">
+      <div class="section-header exp-header">
+        <h2 class="section-title exp-title">Work Experience</h2>
+        <p class="section-subtitle exp-subtitle">
           My professional journey combining AI engineering with education
         </p>
       </div>
@@ -159,8 +167,8 @@
     <!-- Skills Section -->
     <section id="skills">
       <div class="section-header">
-        <h2 class="section-title">Skills & Expertise</h2>
-        <p class="section-subtitle">
+        <h2 class="section-title skill-title">Skills & Expertise</h2>
+        <p class="section-subtitle skill-subtitle">
           Technical proficiency across multiple domains
         </p>
       </div>
@@ -168,7 +176,9 @@
       <div class="skills-container">
         <!-- AI & ML -->
         <div class="skill-category">
-          <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
+          <h3 class="skill-category-name">
+            <i class="fas fa-brain"></i> AI & Machine Learning
+          </h3>
           <div class="skill-tags">
             <span class="skill-tag"
               ><i class="fas fa-robot"></i> Machine Learning</span
@@ -188,7 +198,9 @@
 
         <!-- Programming -->
         <div class="skill-category">
-          <h3><i class="fas fa-code"></i> Programming & Tech</h3>
+          <h3 class="skill-category-name">
+            <i class="fas fa-code"></i> Programming & Tech
+          </h3>
           <div class="skill-tags">
             <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
             <span class="skill-tag"><i class="fab fa-java"></i> Java</span>
@@ -202,7 +214,9 @@
 
         <!-- Tools -->
         <div class="skill-category">
-          <h3><i class="fas fa-tools"></i> Tools & Frameworks</h3>
+          <h3 class="skill-category-name">
+            <i class="fas fa-tools"></i> Tools & Frameworks
+          </h3>
           <div class="skill-tags">
             <span class="skill-tag"><i class="fas fa-fire"></i> PyTorch</span>
             <span class="skill-tag"
@@ -223,8 +237,8 @@
     <!-- Projects Section -->
     <section id="projects" style="background: rgba(2, 12, 27, 0.5)">
       <div class="section-header">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">
+        <h2 class="section-title project-section-title">Featured Projects</h2>
+        <p class="section-subtitle project-section-subtitle">
           Innovative solutions leveraging AI and machine learning
         </p>
       </div>
@@ -320,6 +334,7 @@
         </div>
       </div>
     </section>
+    </main>
     <!-- Footer Contact -->
     <footer id="contact-footer">
       <div class="footer-container">
