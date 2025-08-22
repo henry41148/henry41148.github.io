@@ -41,7 +41,6 @@ particlesJS("particles-js", {
   retina_detect: true,
 });
 
-
 // Create the main ScrollTrigger instance
 
 // =======================
@@ -66,114 +65,113 @@ gsap.to("header", {
   background: "rgba(10, 25, 47, 0.41)",
   backdropFilter: "blur(20px)",
   borderBottom: "2px solid rgba(100, 255, 218, 0.1)",
-  height : "75px",
+  height: "75px",
   // 2. The ScrollTrigger that controls the animation
   scrollTrigger: {
     trigger: ".hero-image", // The trigger is the body of the page
     start: "top 75px", // Start the animation when you scroll 10px down
-    end: "top 150px",  // The animation is fully complete after scrolling 200px
-    
+    end: "top 150px", // The animation is fully complete after scrolling 200px
+
     // 3. This is the magic part!
     scrub: 1, // Links the animation progress to the scrollbar (with a 1-second lag)
-  }
+  },
 });
 // =======================
 // Hero Section Timeline
 // =======================
 
-const herosectionTl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".hero",
-    start: "top 80%",
-    end: "bottom 50%",
-    scrub: 1,
-    toggleActions: "play none play none",
-  },
-});
 
-// herosectionTl.to(".hero", {
-//   opacity: 0,
-//   scale: 0.8,
-//   filter: "blur(20px)",
-// });
-
-const heroTl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".hero-content",
-    start: "top 60%",
-    end: "bottom 50%",
-    toggleActions: "play none play none",
-  },
-});
-
+// Timeline driven by scroll - scrub so progress matches scroll
+// --- SETUP ---
+// Ensure all plugins are registered
+gsap.registerPlugin(ScrollTrigger);
+// Select your hero elements
+const hero = document.querySelector(".hero");
 const elementHero = gsap.utils.toArray(".fade-in-out");
 
-elementHero.forEach((el, index) => {
-  const startTime = index * 0.4;
 
-  if (el.classList.contains("hero-image")) {
-    heroTl
-      .from(el, {
-        opacity: 0,
-        // scale: 1.0,
-        filter: "blur(6px)",
-        duration: 0.6,
-      })
-      .to(el, {
-        // Quick glitch keyframes
-        keyframes: [
-          {
-            x: -10,
-            y: 5,
-            clipPath: "polygon(0% 0%, 100% 0%, 100% 45%, 0% 45%)",
-          },
-          {
-            x: 10,
-            y: -5,
-            clipPath: "polygon(0% 55%, 100% 55%, 100% 100%, 0% 100%)",
-          },
-          {
-            x: -5,
-            y: 2,
-            clipPath: "polygon(0% 20%, 100% 20%, 100% 60%, 0% 60%)",
-          },
-        ],
-        duration: 0.6,
-        ease: "rough({ strength: 2, points: 50, template: none.out, taper: both, randomize: true })",
-      });
-  }
-
-  if (!el.classList.contains("hero-image") && !el.classList.contains("btn")) {
-    heroTl.add(scrambleText(el, undefined, 2), index * 0.7);
-    
-  }
-
-  if (el.classList.contains("btn")) {
-    heroTl.from(
-      el,
-      {
-        opacity: 0,
-        y: 100,
-        duration: 0.6,
-        stagger: 0.1,
-      },
-      // "+=0.5"
-    );
-  }
+// ===================================================================
+//  1. ENTRANCE ANIMATION (Plays once on page load)
+// ===================================================================
+// We create a timeline for all the hero content to animate IN.
+const heroEntranceTl = gsap.timeline({
+    // We add a small delay so the user has a moment to register the page.
+    delay: 0.5 
 });
+
+// Use your excellent forEach loop to build the entrance sequence
+elementHero.forEach((el, index) => {
+    const startTime = index * 0.4;
+
+    if (el.classList.contains("hero-image")) {
+        heroEntranceTl
+            .from(el, {
+                opacity: 0,
+                filter: "blur(6px)",
+                duration: 0.8, // Slightly longer duration for a smoother feel
+            }, startTime) // Position this animation on the timeline
+            
+    }
+
+    if (!el.classList.contains("hero-image") && !el.classList.contains("btn")) {
+        // We add the scramble text animation to the same timeline
+        heroEntranceTl.add(scrambleText(el, undefined, 2), startTime);
+    }
+
+    if (el.classList.contains("btn")) {
+        heroEntranceTl.from(el, {
+            opacity: 0,
+            y: 100,
+            duration: 0.6,
+            stagger: 0.1,
+        }, startTime + 0.5); // Stagger the button appearance slightly
+    }
+});
+
+
+// ===================================================================
+//  2. EXIT ANIMATION (Controlled by the scrollbar)
+// ===================================================================
+// This timeline will make the ENTIRE hero section fade and shrink away.
+const heroExitTl = gsap.timeline({
+    scrollTrigger: {
+        trigger: hero, // The trigger is the hero section itself
+        
+        // --- The Magic Keywords for this effect ---
+        pin: true,     // Pins the hero section while the animation happens
+        scrub: 1,      // Links the animation directly to the scrollbar (smoothly)
+
+        // Define the "active zone" for the scroll animation
+        start: "top top", // Pinning starts when the top of the hero hits the top of the screen
+        end: "+=80%",    // The user will scroll for a distance of 150% of the viewport height while it's pinned
+        
+        // markers: true,   // Uncomment for debugging to see the start/end triggers
+    }
+});
+
+// This is the animation that happens while the hero is pinned
+heroExitTl.to(hero, {
+    scale: 0.8,
+    opacity: 0,
+    zIndex: 1,
+    filter: "blur(10px)",
+    ease: "power2.inOut"
+}, 0);
 
 // =======================
 // About Section Timeline
 // =======================
+
 const elementAbout = gsap.utils.toArray(".scramble-about");
 const elementAbout2 = gsap.utils.toArray(".scramble-about2");
 
 const aboutTl = gsap.timeline({
   scrollTrigger: {
     trigger: ".about-header",
-    start: "top 70%",
+    start: "top 85%",
     end: "bottom 50%",
     toggleActions: "play none none none",
+    markers:true
   },
 });
 
@@ -181,18 +179,17 @@ elementAbout.forEach((el, index) => {
   if (!el.classList.contains("scramble-about2")) {
     aboutTl.add(scrambleText(el, undefined, 1.5), 0);
   } else {
-
     aboutTl.from(
       el,
       {
         opacity: 0,
-        filter: "blur(20px)",
+        filter: "blur(30px)",
         duration: 0.5,
-        scaleX: 0.8,
+        scaleX: 0.9,
+        y: index * -20
       },
       index * 0.2 + 0.5
     );
-
   }
 });
 
@@ -299,7 +296,7 @@ skillTag.forEach((el, index) => {
       y: 50,
       filter: "blur(20px)",
       opacity: 0,
-      duration: 0.27 ,
+      duration: 0.27,
     },
     index * 0.1
   );
@@ -326,5 +323,3 @@ projectTl.from(
   },
   1
 );
-
-
