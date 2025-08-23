@@ -72,7 +72,6 @@ header {
   font-size: 1.1rem;
   font-weight: 500;
   position: relative;
-  transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
@@ -94,9 +93,10 @@ header {
   width: 100%;
 }
 main{
-  position: relative;
+  position: absolute;
   z-index: 2;
-  transform: translateY(-50vh);
+  transform: translateY(-70vh);
+  width: 100%;
 }
 .hero-all{
   width: 100%;
@@ -372,9 +372,7 @@ main{
 section {
   padding: 120px 10%;
 }
-#about{
-  padding-top: 0px;
-}
+
 
 .section-header {
   margin-bottom: 80px;
