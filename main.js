@@ -218,7 +218,6 @@ const aboutTl = gsap.timeline({
     start: "top 90%",
     end: "bottom 50%",
     toggleActions: "play none none none",
-    markers: true,
   },
 });
 
