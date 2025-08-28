@@ -331,7 +331,7 @@ const skillTagTl = gsap.timeline({
     trigger: ".skills-container",
     start: "top 75%",
     end: "bottom 30%",
-    toggleActions: "play reverse play reverse",
+    toggleActions: "play none none none",
   },
 });
 const skillTag = document.querySelectorAll(".skill-tag");
@@ -348,6 +348,9 @@ skillTag.forEach((el, index) => {
   );
 });
 
+// =======================
+// Project Animation
+// =======================
 const projectTl = gsap.timeline({
   scrollTrigger: {
     trigger: ".project-section-title",
@@ -369,3 +372,287 @@ projectTl.from(
   },
   1
 );
+const projects = [
+  {
+    title: "Spatio-Temporal Graph Neural Networks for Traffic Forecasting",
+    summary: "Implemented and benchmarked advanced GNNs for real-world traffic prediction.",
+    description:
+      "Research and implementation of spatio-temporal graph neural networks to predict traffic flow using large-scale datasets.",
+    image: "https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+    technologies: ["PyTorch", "GNN", "Python", "Deep Learning"], // placeholder
+    liveUrl: "#",
+    codeUrl: "#",
+    details:
+      "Conducted an in-depth literature review and implemented state-of-the-art GNN architectures for traffic prediction. Benchmarked models such as DDGCRN, STWave, and AGCRN on real-world datasets (PeMS) using MAE, RMSE, and MAPE. Replicated and validated results from original papers, achieving comparable performance on large-scale benchmarks. Team size: 2 members. Timeline: Dec 2024 - Feb 2025.",
+  },
+  {
+    title: "Medical Chatbot",
+    summary: "Built and fine-tuned a medical chatbot using transformer models for real-time Q&A.",
+    description:
+      "A fine-tuned transformer-based chatbot trained on structured medical Q&A datasets to provide live, interactive responses.",
+    image: "https://images.unsplash.com/photo-1581092334634-1e7b54c4f3c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+    technologies: ["T5", "Transformers", "Hugging Face", "Gradio"], // placeholder
+    liveUrl: "https://youtu.be/nPS5KBo5zhU",
+    codeUrl: "#",
+    details:
+      "Collected and structured 45,000+ doctor-patient interactions from iCliniq to build a custom medical Q&A dataset. Fine-tuned a T5 transformer model to map symptoms to possible conditions and generate natural-language answers. Deployed a live chatbot using Gradio on Hugging Face Spaces for real-time responses. Timeline: Sep 2024 - Oct 2024. Team size: 1 member.",
+  },
+  {
+    title: "Big Data Analytics: PCY Implementation in PySpark",
+    summary: "Applied distributed computing with PySpark to find frequent itemsets in shopping data.",
+    description:
+      "Implementation of the PCY algorithm in PySpark for scalable analysis of frequent item pairs in large datasets.",
+    image: "https://images.unsplash.com/photo-1603791452906-c06a8a4bdf33?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+    technologies: ["PySpark", "Big Data", "HDFS", "Python"], // placeholder
+    liveUrl: "#",
+    codeUrl: "#",
+    details:
+      "Analyzed large-scale shopping basket data using the PCY algorithm to identify frequent item pairs and generate association rules. Implemented the pipeline in PySpark with data preprocessing, hash bucket optimization, and multi-pass scanning. Applied distributed computing to process large-scale transaction datasets efficiently, simulating real-world market basket scenarios. Timeline: Mar 2024. Team size: 5 members.",
+  },
+  {
+    title: "Weather and Traffic Forecasting Application",
+    summary: "Developed IoT + Android app to collect sensor data and forecast weather and traffic trends.",
+    description:
+      "An end-to-end ML pipeline using IoT devices for data collection and Android app for real-time predictions.",
+    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+    technologies: ["IoT", "ML", "Android", "Python"], // placeholder
+    liveUrl: "https://youtu.be/fEdR2XuSrMw",
+    codeUrl: "#",
+    details:
+      "Built a custom IoT device with environmental sensors to collect data such as temperature, humidity, and air quality. Preprocessed the data and applied ML models to forecast environmental and traffic trends. Developed an Android app to visualize sensor data and deliver real-time predictions. Timeline: Nov 2023. Team size: 2 members.",
+  },
+];
+
+
+const showcaseWrapper = document.getElementById("showcaseWrapper");
+// const gridContainer = document.getElementById('gridContainer');
+const showcase = document.getElementById("showcase");
+const projectIndicators = document.getElementById("projectIndicators");
+
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+const modal = document.getElementById("projectModal");
+const closeModalBtn = document.getElementById("closeModal");
+const modalBody = document.getElementById("modalBody");
+
+let activeIndex = 0;
+
+function shortText(str = '', maxChars = 110) {
+  if (!str) return '';
+  if (str.length <= maxChars) return str;
+  const cut = str.slice(0, maxChars);
+  return (cut.replace(/\s+\S*$/, '') || cut) + '…';
+}
+function createCardHTML(project) {
+  // prefer explicit summary, fallback to short excerpt of description/details
+  const summary = project.summary
+    ? project.summary
+    : shortText(project.description || project.details, 110);
+
+  // optional: preview up to 3 tech tags on the card
+  const techPreview =
+    project.technologies && project.technologies.length
+      ? `<div class="tech-preview">
+          ${project.technologies.slice(0, 4).map(t => `<span class="tech-tag">${t}</span>`).join('')}
+        </div>`
+      : "";
+
+  return `
+    <div class="project-image">
+  <i class="fas fa-robot"></i>
+  <!-- NEW: The permanent call-to-action -->
+  <div class="project-view-more">
+    <i class="fas fa-search-plus"></i>
+    <span>View Details</span>
+  </div>
+</div>
+    <div class="project-content">
+      <h3 class="project-title">${project.title}</h3>
+
+
+      ${techPreview}
+
+      <!-- notice / button -->
+
+    </div>
+`;
+    
+}
+
+
+function init() {
+  showcase.innerHTML = "";
+  //  gridContainer.innerHTML = '';
+  projectIndicators.innerHTML = "";
+
+  projects.forEach((project, index) => {
+    // Showcase Card
+    const card = document.createElement("div");
+    card.className = "project-card";
+    card.innerHTML = createCardHTML(project);
+    card.addEventListener("click", () => handleCardClick(index));
+    showcase.appendChild(card);
+
+    // Indicator
+    const indicator = document.createElement("div");
+    indicator.className = "indicator";
+    indicator.addEventListener("click", () => updateActive(index));
+    projectIndicators.appendChild(indicator);
+  });
+  updateShowcase();
+}
+
+function updateShowcase() {
+  const cards = document.querySelectorAll(".project-card");
+  const indicators = document.querySelectorAll(".indicator");
+  const offset = 35; // Percentage for horizontal translation
+  const rotation = 30; // Degrees for rotation
+  const scale = 0.8; // Scale for non-active cards
+
+  cards.forEach((card, index) => {
+    const position = index - activeIndex;
+    let transform;
+
+    if (position === 0) {
+      transform = `translateX(0) rotateY(0) scale(1)`;
+      card.style.zIndex = cards.length + 1;
+      card.style.filter = 'none'
+
+    } else {
+      const sign = Math.sign(position);
+      transform = `translateX(${position * offset+ sign*30}%) rotateY(${ -sign * rotation}deg) scale(${scale})`;
+      card.style.zIndex = cards.length - Math.abs(position);
+      card.style.filter = `brightness(0.5) saturate(0.8) blur(${Math.abs(position) * 0.5}px)`
+    }
+
+    card.style.setProperty("--transform", transform);
+    card.style.transform = `translate(-50%, -50%) ${transform}`;
+    card.style.opacity = Math.abs(position) > 2 ? "0" : "1";
+    card.style.zIndex = projects.length - Math.abs(position);
+
+    card.classList.toggle("active", index === activeIndex);
+  });
+
+  indicators.forEach((ind, index) => {
+    ind.classList.toggle("active", index === activeIndex);
+  });
+}
+
+function updateActive(newIndex, isForced = false) {
+  if (!isForced && newIndex === activeIndex) return;
+  activeIndex = (newIndex + projects.length) % projects.length;
+  updateShowcase();
+}
+
+function handleCardClick(index) {
+  if (index === activeIndex) {
+    showProjectModal(index);
+  } else {
+    updateActive(index);
+  }
+}
+
+function showProjectModal(index) {
+  const project = projects[index];
+  modalBody.innerHTML = `
+     <div class="modal-image"><img src="${project.image}" alt="${
+    project.title
+  }"></div>
+     <h2 class="modal-title">${project.title}</h2>
+     <p class="modal-description">${project.details}</p>
+     <div class="modal-tech">${project.technologies
+       .map((tech) => `<span class="tech-tag">${tech}</span>`)
+       .join("")}</div>
+     <div class="modal-links">
+         <a href="${
+           project.liveUrl
+         }" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> View Live Demo</a>
+         <a href="${
+           project.codeUrl
+         }" class="project-link" target="_blank"><i class="fab fa-github"></i> View Source Code</a>
+     </div>`;
+  modal.classList.add("active");
+}
+
+function closeModal() {
+  modal.classList.remove("active");
+}
+
+// Event Listeners
+prevBtn.addEventListener("click", () => updateActive(activeIndex - 1));
+nextBtn.addEventListener("click", () => updateActive(activeIndex + 1));
+
+closeModalBtn.addEventListener("click", closeModal);
+modal.addEventListener("click", (e) => e.target === modal && closeModal());
+
+document.addEventListener("keydown", (e) => {
+  if (modal.classList.contains("active")) {
+    if (e.key === "Escape") closeModal();
+    return;
+  }
+  if (e.key === "ArrowLeft") updateActive(activeIndex - 1);
+  if (e.key === "ArrowRight") updateActive(activeIndex + 1);
+});
+
+init();
+(function ensureModalIsGlobal() {
+  const modal = document.getElementById('projectModal');
+  if (!modal) return; // nothing to do
+
+  // Move modal under document.body so fixed covers viewport reliably
+  if (modal.parentElement !== document.body) {
+    document.body.appendChild(modal);
+  }
+
+  const closeBtn = document.getElementById('closeModal') || modal.querySelector('.close-modal');
+
+  // When modal opens, lock page scroll; when it closes, restore
+  const openModalHooks = () => {
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  };
+  const closeModalHooks = () => {
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  };
+
+  // wrap existing showProjectModal & closeModal if they exist, otherwise keep your functions
+  const originalShow = window.showProjectModal;
+  window.showProjectModal = function (index) {
+    // call your existing function that fills modal content (if defined)
+    if (typeof originalShow === 'function') {
+      originalShow(index);
+    } else {
+      // fallback: you already have a function named showProjectModal in your script,
+      // so this branch should rarely run.
+    }
+    // show overlay + lock scroll
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden','false');
+    openModalHooks();
+    // ensure focus is inside modal for accessibility
+    setTimeout(()=> {
+      const focusTarget = modal.querySelector('button, a, [tabindex]') || modal.querySelector('.modal-content');
+      focusTarget && focusTarget.focus && focusTarget.focus();
+    }, 80);
+  };
+
+  // override close to unlock scroll
+  const originalClose = window.closeModal;
+  window.closeModal = function () {
+    // if you had custom logic, run it
+    if (typeof originalClose === 'function') originalClose();
+    // hide overlay + release scroll
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden','true');
+    closeModalHooks();
+  };
+
+  // wire close UI if not already wired
+  if (closeBtn) closeBtn.addEventListener('click', ()=> window.closeModal());
+  modal.addEventListener('click', (e) => { if (e.target === modal) window.closeModal(); });
+
+  // escape key to close
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) window.closeModal(); });
+})();

@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Project Showcase | Henry's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0f1f 0%, #1a1a2e 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #6e45e2, #88d3ce);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .view-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .toggle-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toggle-btn.active, .toggle-btn:hover {
+            background: linear-gradient(45deg, #6e45e2, #5e17eb);
+            transform: translateY(-2px);
+        }
+
+        /* 3D Carousel View */
+        .carousel-container {
+            position: relative;
+            height: 520px;
+            perspective: 1200px;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .project-card {
+            position: absolute;
+            width: 350px;
+            height: 480px;
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            flex-direction: column;
+            backface-visibility: hidden;
+            cursor: pointer;
+            left: 50%;
+            transform-origin: center;
+        }
+
+        .project-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-number {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.1);
+            z-index: 2;
+        }
+
+        .project-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .project-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            background: rgba(110, 69, 226, 0.2);
+            color: #88d3ce;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: rgba(110, 69, 226, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .navigation-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(110, 69, 226, 0.8);
+            transform: scale(1.1);
+        }
+
+        .project-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #6e45e2;
+            transform: scale(1.3);
+        }
+
+        /* Grid View */
+        .grid-container {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .grid-project {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: translateY(0);
+            cursor: pointer;
+        }
+
+        .grid-project:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            width: 90%;
+            max-width: 900px;
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.5s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-image {
+            height: 300px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .modal-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .modal-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-bottom: 2rem;
+        }
+
+        .modal-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .background-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(110, 69, 226, 0.1), rgba(136, 211, 206, 0.1));
+            filter: blur(40px);
+        }
+
+        .bg-circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+        }
+
+        .bg-circle:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            bottom: -100px;
+            right: -100px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .project-card {
+                width: 320px;
+                height: 460px;
+            }
+            
+            .grid-container {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .project-card {
+                width: 280px;
+                height: 420px;
+            }
+            
+            .project-title {
+                font-size: 1.4rem;
+            }
+            
+            .project-description {
+                font-size: 0.9rem;
+            }
+            
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                padding: 1.5rem;
+            }
+            
+            .modal-image {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .project-content {
+                padding: 1.5rem;
+            }
+            
+            .project-links {
+                flex-direction: column;
+            }
+            
+            .view-toggle {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .toggle-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        .carousel { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.23,1,0.32,1); }
+.project-card {
+    position: absolute;
+    width: 350px;
+    height: 480px;
+    left: 50%;
+    top: 50%;
+    transform-origin: center center;
+    backface-visibility: hidden;
+    transition: transform 0.6s cubic-bezier(0.23,1,0.32,1), opacity 0.6s;
+}
+/* ensure carousel container centers */
+.carousel-container { display: block; position: relative; }
+    </style>
+</head>
+<body>
+    <div class="background-elements">
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Project Portfolio</h1>
+            <p class="subtitle">Explore my work through this interactive showcase. Switch between 3D carousel and grid views.</p>
+        </header>
+
+        <div class="view-toggle">
+            <button class="toggle-btn active" id="carouselViewBtn">
+                <i class="fas fa-film"></i> 3D Carousel
+            </button>
+            <button class="toggle-btn" id="gridViewBtn">
+                <i class="fas fa-th"></i> Grid View
+            </button>
+        </div>
+
+        <!-- 3D Carousel View -->
+        <div class="carousel-container" id="carouselContainer">
+            <div class="carousel" id="carousel">
+                <!-- Project cards will be dynamically positioned by JavaScript -->
+            </div>
+
+            <div class="navigation-controls">
+                <button class="nav-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="nav-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="project-indicators" id="projectIndicators">
+                <!-- Indicators will be added by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Grid View -->
+        <div class="grid-container" id="gridContainer">
+            <!-- Grid items will be added by JavaScript -->
+        </div>
+
+        <!-- Modal -->
+        <div class="modal" id="projectModal">
+            <div class="modal-content">
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div id="modalBody">
+                    <!-- Modal content will be dynamically inserted -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Project data
+        const projects = [
+            {
+                title: "Neural Network Visualization",
+                description: "An interactive 3D visualization of neural networks with real-time training simulation and parameter adjustment. This project demonstrates complex data visualization techniques and WebGL rendering capabilities.",
+                image: "https://images.unsplash.com/photo-1589254066210-9a5c5b0a5c8a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                technologies: ["Three.js", "TensorFlow.js", "WebGL", "React"],
+                liveUrl: "#",
+                codeUrl: "#",
+                details: "This project allows users to visualize neural networks in 3D space, adjusting parameters in real-time to see how the network learns. It includes features like layer visualization, activation function exploration, and training progress monitoring."
+            },
+            {
+                title: "Quantum Computing Simulator",
+                description: "A browser-based quantum computing simulator with drag-and-drop circuit design and real-time visualization of quantum states.",
+                image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                technologies: ["JavaScript", "QuantumJS", "SVG", "Web Workers"],
+                liveUrl: "#",
+                codeUrl: "#",
+                details: "This simulator provides an intuitive interface for designing quantum circuits with drag-and-drop gates. It includes visualization of quantum states, probability distributions, and measurement outcomes."
+            },
+            {
+                title: "AR Product Preview",
+                description: "Augmented reality e-commerce experience that allows users to preview products in their environment using WebXR.",
+                image: "https://images.unsplash.com/photo-1626379953821-29c5c7750ab9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                technologies: ["WebXR", "A-Frame", "Three.js", "WebGL"],
+                liveUrl: "#",
+                codeUrl: "#",
+                details: "This AR experience allows users to place virtual products in their physical environment using their device's camera. It includes features like scaling, rotation, and material customization."
+            },
+            {
+                title: "Real-time Collaboration Platform",
+                description: "A feature-rich collaborative coding environment with real-time code editing, video chat, and project management tools.",
+                image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                technologies: ["WebSockets", "Node.js", "React", "WebRTC"],
+                liveUrl: "#",
+                codeUrl: "#",
+                details: "This platform enables real-time collaboration between developers with features like shared code editing, terminal sharing, video conferencing, and project management tools."
+            },
+            {
+                title: "Generative Art Engine",
+                description: "A procedural content generation tool that creates unique visual artworks based on algorithmic patterns and user input.",
+                image: "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                technologies: ["Canvas API", "WebGL", "GLSL", "p5.js"],
+                liveUrl: "#",
+                codeUrl: "#",
+                details: "This generative art engine uses algorithms and user input to create unique visual artworks. It includes various generation methods, parameter controls, and export functionality."
+            },
+            {
+                title: "Data Visualization Dashboard",
+                description: "An interactive dashboard for exploring large datasets with multiple visualization types and real-time filtering capabilities.",
+                image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                technologies: ["React", "D3.js", "WebSocket", "IndexedDB"],
+                liveUrl: "#",
+                codeUrl: "#",
+                details: "This dashboard provides multiple visualization types for exploring large datasets, including charts, graphs, maps, and custom visualizations. It includes real-time data updates and filtering capabilities."
+            }
+        ];
+
+        const carouselContainer = document.getElementById('carouselContainer');
+    const gridContainer = document.getElementById('gridContainer');
+    const carousel = document.getElementById('carousel');
+    const projectIndicators = document.getElementById('projectIndicators');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const carouselViewBtn = document.getElementById('carouselViewBtn');
+    const gridViewBtn = document.getElementById('gridViewBtn');
+    const modal = document.getElementById('projectModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalBody = document.getElementById('modalBody');
+
+    // State variables (declared early)
+    let currentPosition = 0; // degrees applied to carousel (rotateY)
+    let isGridView = false;
+    let autoRotateInterval = null;
+    let radius = 500; // will be calculated
+    let cards = [];
+
+    // Initialize the projects
+    function initProjects() {
+        // Clear existing content
+        carousel.innerHTML = '';
+        projectIndicators.innerHTML = '';
+        gridContainer.innerHTML = '';
+
+        // Create project cards and indicators
+        projects.forEach((project, index) => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.innerHTML = `
+                <div class="project-number">${index + 1}</div>
+                <div class="project-image">
+                    <img src="${project.image}" alt="${project.title}">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-description">${project.description}</p>
+                    <div class="project-tech">
+                        ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                    </div>
+                    <div class="project-links">
+                        <a href="${project.liveUrl}" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="${project.codeUrl}" class="project-link">
+                            <i class="fab fa-github"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+            `;
+            card.addEventListener('click', (e) => {
+                // prevent accidental double rotation; open modal
+                e.stopPropagation();
+                showProjectModal(index);
+            });
+
+            carousel.appendChild(card);
+
+            // Create indicator
+            const indicator = document.createElement('div');
+            indicator.className = 'indicator';
+            if (index === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', (ev) => {
+                ev.stopPropagation();
+                navigateToProject(index);
+            });
+            projectIndicators.appendChild(indicator);
+
+            // Create grid item
+            const gridItem = document.createElement('div');
+            gridItem.className = 'grid-project';
+            gridItem.innerHTML = `
+                <div class="project-image">
+                    <img src="${project.image}" alt="${project.title}">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-description">${project.description}</p>
+                    <div class="project-tech">
+                        ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                    </div>
+                    <div class="project-links">
+                        <a href="${project.liveUrl}" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="${project.codeUrl}" class="project-link">
+                            <i class="fab fa-github"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+            `;
+            gridItem.addEventListener('click', () => showProjectModal(index));
+            gridContainer.appendChild(gridItem);
+        });
+
+        // cache cards NodeList
+        cards = document.querySelectorAll('.project-card');
+
+        // Position project cards
+        positionProjects();
+
+        // Start auto rotation
+        startAutoRotation();
+    }
+
+    // Position project cards in 3D space (responsive)
+    function positionProjects() {
+        if (!cards || cards.length === 0) return;
+        const total = cards.length;
+        const angle = 360 / total;
+
+        // measure card width (use first card after it's been injected)
+        const cardWidth = cards[0].offsetWidth || 350;
+
+        // compute an appropriate radius so cards don't overlap and spacing is balanced
+        // formula: radius = cardWidth / (2 * tan(PI / total))
+        const computedRadius = Math.round((cardWidth / (2 * Math.tan(Math.PI / total))));
+        // provide sensible bounds so radius doesn't explode for few cards or tiny screens
+        const maxRadius = Math.max(carouselContainer.offsetWidth, 500);
+        radius = Math.min(Math.max(computedRadius, 250), maxRadius);
+
+        // Apply transform to carousel to push everything back by -radius
+        carousel.style.transform = `translateZ(-${radius}px) rotateY(${currentPosition}deg)`;
+
+        cards.forEach((card, index) => {
+            const rotateY = angle * index;
+
+            // position card on cylinder: center with translateX(-50%) & translateY(-50%)
+            // then rotate around Y and push forward by radius
+            // subtle scale based on how near to the front it is
+            // compute the card's current facing angle relative to the viewer
+            let cardAngle = (rotateY + currentPosition) % 360;
+            if (cardAngle < 0) cardAngle += 360;
+            // delta distance to front (0 = front center)
+            let delta = Math.min(Math.abs(cardAngle), 360 - Math.abs(cardAngle));
+
+            // depth cues
+            const isFront = delta < 90;
+            const opacity = 1 - Math.min(delta / 180, 0.6); // from 1 -> 0.4
+            const scale = isFront ? 1.03 : 0.92 + (1 - delta / 180) * 0.08;
+            const zIndex = Math.round(1000 - delta); // front cards have higher z-index
+
+            card.style.zIndex = zIndex;
+            card.style.opacity = opacity;
+            // transform: translate center, rotate around Y, push forward, then scale
+            card.style.transform = `translateX(-50%) translateY(-50%) rotateY(${rotateY}deg) translateZ(${radius}px) scale(${scale})`;
+        });
+
+        // Update indicators: activeIndex derived from carousel rotation
+        const activeIndex = ((Math.round((-currentPosition) / angle) % total) + total) % total;
+        document.querySelectorAll('.indicator').forEach((indicator, i) => {
+            indicator.classList.toggle('active', i === activeIndex);
+        });
+    }
+
+    // Navigate to specific project
+    function navigateToProject(index) {
+        const total = projects.length;
+        const angle = 360 / total;
+        currentPosition = -angle * index;
+        positionProjects();
+        restartAutoRotation();
+    }
+
+    // Rotate carousel (direction: +1 or -1)
+    function rotateCarousel(direction) {
+        const angle = 360 / projects.length;
+        currentPosition += angle * direction;
+        // keep currentPosition normalized to reasonable range to avoid large numbers
+        if (currentPosition > 360 || currentPosition < -360) {
+            currentPosition = ((currentPosition % 360) + 360) % 360;
+        }
+        positionProjects();
+        restartAutoRotation();
+    }
+
+    // Auto rotation with pause/resume
+    function startAutoRotation() {
+        if (autoRotateInterval) clearInterval(autoRotateInterval);
+        autoRotateInterval = setInterval(() => {
+            if (!isGridView) {
+                rotateCarousel(-1);
+            }
+        }, 4000);
+    }
+
+    function stopAutoRotation() {
+        if (autoRotateInterval) {
+            clearInterval(autoRotateInterval);
+            autoRotateInterval = null;
+        }
+    }
+
+    function restartAutoRotation() {
+        stopAutoRotation();
+        startAutoRotation();
+    }
+
+    // Switch between carousel and grid views
+    function toggleView() {
+        isGridView = !isGridView;
+
+        if (isGridView) {
+            carouselContainer.style.display = 'none';
+            gridContainer.style.display = 'grid';
+            carouselViewBtn.classList.remove('active');
+            gridViewBtn.classList.add('active');
+            stopAutoRotation();
+        } else {
+            carouselContainer.style.display = 'block';
+            gridContainer.style.display = 'none';
+            gridViewBtn.classList.remove('active');
+            carouselViewBtn.classList.add('active');
+            startAutoRotation();
+            // ensure positions recalculated (radius might change)
+            positionProjects();
+        }
+    }
+
+    // Show project modal
+    function showProjectModal(index) {
+        const project = projects[index];
+
+        modalBody.innerHTML = `
+            <div class="modal-image">
+                <img src="${project.image}" alt="${project.title}">
+            </div>
+            <h2 class="modal-title">${project.title}</h2>
+            <p class="modal-description">${project.description}</p>
+            <p class="modal-description">${project.details}</p>
+            <div class="modal-tech">
+                ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+            </div>
+            <div class="modal-links">
+                <a href="${project.liveUrl}" class="project-link">
+                    <i class="fas fa-external-link-alt"></i> View Live Demo
+                </a>
+                <a href="${project.codeUrl}" class="project-link">
+                    <i class="fab fa-github"></i> View Source Code
+                </a>
+            </div>
+        `;
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        stopAutoRotation();
+    }
+
+    // Close modal
+    function closeProjectModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        if (!isGridView) startAutoRotation();
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', () => rotateCarousel(1));
+    nextBtn.addEventListener('click', () => rotateCarousel(-1));
+    carouselViewBtn.addEventListener('click', () => { if (isGridView) toggleView(); });
+    gridViewBtn.addEventListener('click', () => { if (!isGridView) toggleView(); });
+    closeModal.addEventListener('click', closeProjectModal);
+
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeProjectModal(); });
+
+    document.addEventListener('keydown', (e) => {
+        if (!isGridView) {
+            if (e.key === 'ArrowLeft') rotateCarousel(1);
+            else if (e.key === 'ArrowRight') rotateCarousel(-1);
+        }
+        if (e.key === 'Escape') closeProjectModal();
+    });
+
+    // touch swipe
+    let touchStartX = 0, touchEndX = 0;
+    carousel.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
+    carousel.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        const min = 40;
+        if (touchEndX < touchStartX - min) rotateCarousel(-1);
+        else if (touchEndX > touchStartX + min) rotateCarousel(1);
+    }, false);
+
+    // handle resize: recalc radius & reposition
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            positionProjects();
+        }, 120);
+    });
+
+    // Initialize on load
+    window.addEventListener('load', initProjects);
+    </script>
+</body>
+</html>

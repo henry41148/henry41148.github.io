@@ -243,161 +243,93 @@
       </section>
 
       <!-- Projects Section -->
-      <section id="projects" style="background: rgba(2, 12, 27, 0.5)">
-        <div class="section-header">
+      <section id="projects">
+        <div class="section-header project-header">
           <h2 class="section-title project-section-title">Featured Projects</h2>
           <p class="section-subtitle project-section-subtitle">
             Innovative solutions leveraging AI and machine learning
           </p>
         </div>
-        <div class="projects-grid">
-          <!-- Medical Chatbot -->
-          <div class="project-card">
-            <div class="project-image">
-              <i class="fas fa-robot"></i>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Medical Chatbot</h3>
-              <p class="project-description">
-                AI-powered chatbot for medical queries and chest X-ray diagnosis
-                using ViT-GPT2 and T5 models.
-              </p>
-              <div class="project-tech">
-                <span class="tech-tag">NLP</span>
-                <span class="tech-tag">Transformers</span>
-                <span class="tech-tag">Hugging Face</span>
-                <span class="tech-tag">Python</span>
-              </div>
-              <div class="project-links">
-                <a
-                  href="https://huggingface.co/spaces/henry41148/henry-space"
-                  class="project-link"
-                  target="_blank"
-                  ><i class="fas fa-external-link-alt"></i> Live Demo</a
-                >
-                <a
-                  href="https://youtu.be/nP55KBp5zhU"
-                  class="project-link"
-                  target="_blank"
-                  ><i class="fab fa-youtube"></i> Video</a
-                >
-              </div>
+        <div class="showcase-wrapper" id="showcaseWrapper">
+          <div class="showcase-container">
+            <div class="showcase" id="showcase">
+              <!-- JS will populate this -->
             </div>
           </div>
-
-          <!-- Weather & Traffic App -->
-          <div class="project-card">
-            <div class="project-image">
-              <i class="fas fa-cloud-sun-rain"></i>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Weather & Traffic Forecasting</h3>
-              <p class="project-description">
-                IoT and ML-powered Android application for weather and traffic
-                predictions using sensor data.
-              </p>
-              <div class="project-tech">
-                <span class="tech-tag">IoT</span>
-                <span class="tech-tag">Machine Learning</span>
-                <span class="tech-tag">Android</span>
-                <span class="tech-tag">Python</span>
-              </div>
-              <div class="project-links">
-                <a
-                  href="https://youtu.be/ffcqR2XuSMw"
-                  class="project-link"
-                  target="_blank"
-                  ><i class="fab fa-youtube"></i> Demo Video</a
-                >
-              </div>
-            </div>
+          <div class="navigation-controls">
+            <button class="nav-btn" id="prevBtn" aria-label="Previous">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-btn" id="nextBtn" aria-label="Next">
+              <i class="fas fa-chevron-right"></i>
+            </button>
           </div>
-
-          <!-- Big Data Analytics -->
-          <div class="project-card">
-            <div class="project-image">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Big Data Analytics</h3>
-              <p class="project-description">
-                PCY algorithm implementation in PySpark for large-scale shopping
-                basket data analysis.
-              </p>
-              <div class="project-tech">
-                <span class="tech-tag">Big Data</span>
-                <span class="tech-tag">PySpark</span>
-                <span class="tech-tag">PCY Algorithm</span>
-                <span class="tech-tag">Python</span>
-              </div>
-              <div class="project-links">
-                <a
-                  href="https://github.com/henry41148/BigData-PCY-Pyspark/tree/main"
-                  class="project-link"
-                  target="_blank"
-                  ><i class="fab fa-github"></i> Source Code</a
-                >
-              </div>
+          <div class="project-indicators" id="projectIndicators"></div>
+          <div class="modal" id="projectModal">
+            <div class="modal-content">
+              <button class="close-modal" id="closeModal">
+                <i class="fas fa-times"></i>
+              </button>
+              <div id="modalBody"></div>
             </div>
           </div>
         </div>
       </section>
-    <!-- Footer Contact -->
-    <footer id="contact-footer">
-      <div class="footer-container">
-        <!-- Left side -->
-        <div class="footer-about">
-          <h2 class="footer-title">Get In Touch</h2>
-          <p class="footer-subtitle">
-            I’m always open to new opportunities, collaborations, or just a
-            friendly chat.
-          </p>
+      <!-- Footer Contact -->
+      <footer id="contact-footer">
+        <div class="footer-container">
+          <!-- Left side -->
+          <div class="footer-about">
+            <h2 class="footer-title">Get In Touch</h2>
+            <p class="footer-subtitle">
+              I’m always open to new opportunities, collaborations, or just a
+              friendly chat.
+            </p>
+          </div>
+
+          <!-- Right side -->
+
+          <div class="footer-contact">
+            <div class="contact-item">
+              <i class="fas fa-user"></i>
+              <span>Nguyen Dinh Danh</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <a href="tel:+84365739985">(+84) 365 739 985</a>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:henry.41148@gmail.com">henry.41148@gmail.com</a>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <a href="https://maps.app.goo.gl/ni1wZWvUjiJU44q48"
+                >Ho Chi Minh City, Viet Nam</a
+              >
+            </div>
+
+            <!-- New line with name -->
+
+            <div class="social-links">
+              <a
+                href="https://www.linkedin.com/in/danh-nguy%E1%BB%85n-638901317/"
+                target="_blank"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+              <a href="https://www.kaggle.com/henry41148" target="_blank"
+                ><i class="fab fa-kaggle"></i
+              ></a>
+              <a href="https://github.com/henry41148" target="_blank"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="https://youtube.com" target="_blank"
+                ><i class="fab fa-youtube"></i
+              ></a>
+            </div>
+          </div>
         </div>
-
-        <!-- Right side -->
-
-        <div class="footer-contact">
-          <div class="contact-item">
-            <i class="fas fa-user"></i>
-            <span>Nguyen Dinh Danh</span>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <a href="tel:+84365739985">(+84) 365 739 985</a>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:henry.41148@gmail.com">henry.41148@gmail.com</a>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <a href="https://maps.app.goo.gl/ni1wZWvUjiJU44q48"
-              >Ho Chi Minh City, Viet Nam</a
-            >
-          </div>
-
-          <!-- New line with name -->
-
-          <div class="social-links">
-            <a
-              href="https://www.linkedin.com/in/danh-nguy%E1%BB%85n-638901317/"
-              target="_blank"
-              ><i class="fab fa-linkedin-in"></i
-            ></a>
-            <a href="https://www.kaggle.com/henry41148" target="_blank"
-              ><i class="fab fa-kaggle"></i
-            ></a>
-            <a href="https://github.com/henry41148" target="_blank"
-              ><i class="fab fa-github"></i
-            ></a>
-            <a href="https://youtube.com" target="_blank"
-              ><i class="fab fa-youtube"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </main>
-
+      </footer>
+    </main>
   </body>
 </html>
