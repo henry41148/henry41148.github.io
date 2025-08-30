@@ -348,80 +348,96 @@ skillTag.forEach((el, index) => {
   );
 });
 
-// =======================
-// Project Animation
-// =======================
-const projectTl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".project-section-title",
-    start: "top 75%",
-    end: "bottom 38%",
-    toggleActions: "play none none none",
-  },
-});
-const projectTitle = document.querySelector(".project-section-title");
-projectTl.add(scrambleText(projectTitle, undefined, 2), 0);
-
-const projectSubTitle = document.querySelector(".project-section-subtitle");
-projectTl.from(
-  projectSubTitle,
-  {
-    opacity: 0,
-    filter: "blur(20px)",
-    duration: 1,
-  },
-  1
-);
 const projects = [
   {
-    title: "Spatio-Temporal Graph Neural Networks for Traffic Forecasting",
-    summary: "Implemented and benchmarked advanced GNNs for real-world traffic prediction.",
+    title: "2D Platformer Game (Mario-inspired)",
+    summary: "Developed a side-scrolling 2D platformer with classic Mario-style gameplay.",
     description:
-      "Research and implementation of spatio-temporal graph neural networks to predict traffic flow using large-scale datasets.",
-    image: "https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
-    technologies: ["PyTorch", "GNN", "Python", "Deep Learning"], // placeholder
+      "A Unity-based 2D platformer featuring character controls, enemies, collectibles, and level progression.",
+    image: "assets/images/project-thumbnails/2D-Platformer.png",
+    video: "assets/images/project-thumbnails/2D-Platformer.mp4",
+    technologies: ["Unity", "C#", "2D Physics", "Tilemap", "Animation", "Collision System"],
     liveUrl: "#",
     codeUrl: "#",
+    timeline: "15 May – 1 June 2025",
+    teamSize: "1 member",
     details:
-      "Conducted an in-depth literature review and implemented state-of-the-art GNN architectures for traffic prediction. Benchmarked models such as DDGCRN, STWave, and AGCRN on real-world datasets (PeMS) using MAE, RMSE, and MAPE. Replicated and validated results from original papers, achieving comparable performance on large-scale benchmarks. Team size: 2 members. Timeline: Dec 2024 - Feb 2025.",
+      "Designed and implemented a side-scrolling platformer inspired by Super Mario, with player movement, jump mechanics, coin collection, and enemy AI. Applied Unity’s 2D physics for smooth controls and collision handling. Built multiple levels with increasing difficulty and a scoring system.\n\nTimeline: 15 May – 1 June 2025\nTeam size: 1 member."
+  },
+  {
+    title: "3D Terrain Explorer (First-Person Controller)",
+    summary: "Created a terrain demo with sculpted landscapes and a simple first-person controller.",
+    description:
+      "A lightweight Unity demo featuring sculpted terrain, painted materials, and first-person exploration.",
+    image: "assets/images/project-thumbnails/3D-Terrain-Explorer.png",
+    video: "assets/images/project-thumbnails/Terrain.mp4",
+    technologies: ["Unity", "C#", "Terrain Tools", "First-Person Controller", "Lighting & Materials"],
+    liveUrl: "#",
+    codeUrl: "#",
+    timeline: "10 July – 5 August 2025",
+    teamSize: "1 member",
+    details:
+      "Built a terrain-focused prototype with sculpted heightmaps, textured layers, and scattered vegetation. Implemented a simple first-person controller with smooth WASD movement and mouse-look controls. Applied baked lighting for performance and added a few collectibles for interactivity.\n\nTimeline: 10 July – 5 August 2025\nTeam size: 1 member."
+  },
+  {
+    title: "Spatio-Temporal Graph Neural Networks for Traffic Forecasting",
+    summary: "Benchmarked state-of-the-art GNN architectures for traffic prediction.",
+    description:
+      "A research-focused project replicating and validating GNN models for large-scale traffic forecasting.",
+    image: "assets/images/project-thumbnails/GNN.png",
+    technologies: ["PyTorch", "Graph Neural Networks", "Python", "Machine Learning"],
+    liveUrl: "#",
+    codeUrl: "#",
+    timeline: "Dec 2024 – Feb 2025",
+    teamSize: "2 members",
+    details:
+      "Conducted an in-depth literature review and hands-on implementation of GNN architectures for traffic forecasting. Benchmarked models such as DDGCRN, STWave, and AGCRN on real-world traffic datasets (PeMS) using MAE, RMSE, and MAPE as evaluation metrics. Replicated and validated results, achieving comparable performance on large-scale benchmarks.\n\nTimeline: Dec 2024 – Feb 2025\nTeam size: 2 members."
   },
   {
     title: "Medical Chatbot",
-    summary: "Built and fine-tuned a medical chatbot using transformer models for real-time Q&A.",
+    summary: "Built an LLM-powered medical assistant using a fine-tuned T5 model.",
     description:
-      "A fine-tuned transformer-based chatbot trained on structured medical Q&A datasets to provide live, interactive responses.",
-    image: "https://images.unsplash.com/photo-1581092334634-1e7b54c4f3c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
-    technologies: ["T5", "Transformers", "Hugging Face", "Gradio"], // placeholder
-    liveUrl: "https://youtu.be/nPS5KBo5zhU",
+      "A chatbot trained on 45,000+ Q&A pairs to suggest possible conditions from symptoms.",
+    image: "assets/images/project-thumbnails/Chatbot.png",
+    video: "assets/images/project-thumbnails/Chatbot.mp4",
+    technologies: ["Python", "Transformers", "Hugging Face", "Gradio", "LLM"],
+    liveUrl: "https://huggingface.co/spaces/henry41148/henry-space",
     codeUrl: "#",
+    timeline: "Sep 2024 – Oct 2024",
+    teamSize: "1 member",
     details:
-      "Collected and structured 45,000+ doctor-patient interactions from iCliniq to build a custom medical Q&A dataset. Fine-tuned a T5 transformer model to map symptoms to possible conditions and generate natural-language answers. Deployed a live chatbot using Gradio on Hugging Face Spaces for real-time responses. Timeline: Sep 2024 - Oct 2024. Team size: 1 member.",
+      "Collected and structured 45,000+ doctor–patient interactions from iCliniq to build a custom dataset. Fine-tuned a T5 transformer model to map symptoms to conditions and generate natural-language answers. Deployed a live chatbot using Gradio on Hugging Face Spaces for real-time responses.\n\nTimeline: Sep 2024 – Oct 2024\nTeam size: 1 member."
   },
   {
     title: "Big Data Analytics: PCY Implementation in PySpark",
     summary: "Applied distributed computing with PySpark to find frequent itemsets in shopping data.",
     description:
-      "Implementation of the PCY algorithm in PySpark for scalable analysis of frequent item pairs in large datasets.",
-    image: "https://images.unsplash.com/photo-1603791452906-c06a8a4bdf33?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
-    technologies: ["PySpark", "Big Data", "HDFS", "Python"], // placeholder
+      "Implementation of the PCY algorithm in PySpark for scalable analysis of frequent item pairs.",
+    image: "assets/images/project-thumbnails/Bigdata.png",
+    technologies: ["PySpark", "Big Data", "HDFS", "Python"],
     liveUrl: "#",
-    codeUrl: "#",
+    codeUrl: "https://github.com/henry41148/BigData-PCY-Pyspark",
+    timeline: "Mar 2024",
+    teamSize: "5 members",
     details:
-      "Analyzed large-scale shopping basket data using the PCY algorithm to identify frequent item pairs and generate association rules. Implemented the pipeline in PySpark with data preprocessing, hash bucket optimization, and multi-pass scanning. Applied distributed computing to process large-scale transaction datasets efficiently, simulating real-world market basket scenarios. Timeline: Mar 2024. Team size: 5 members.",
+      "Analyzed shopping basket data using the PCY algorithm to identify frequent item pairs and generate association rules. Implemented a PySpark pipeline with preprocessing, hash bucket optimization, and multi-pass scanning. Leveraged distributed computing for scalable analysis, simulating real-world market basket scenarios.\n\nTimeline: Mar 2024\nTeam size: 5 members."
   },
   {
     title: "Weather and Traffic Forecasting Application",
-    summary: "Developed IoT + Android app to collect sensor data and forecast weather and traffic trends.",
+    summary: "Built an IoT + ML Android app for real-time forecasting.",
     description:
-      "An end-to-end ML pipeline using IoT devices for data collection and Android app for real-time predictions.",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
-    technologies: ["IoT", "ML", "Android", "Python"], // placeholder
+      "Combined custom IoT hardware, ML models, and an Android app to deliver weather and traffic predictions.",
+    image: "assets/images/project-thumbnails/IOT.png",
+    technologies: ["IoT", "Python", "Machine Learning", "Android", "Java"],
     liveUrl: "https://youtu.be/fEdR2XuSrMw",
     codeUrl: "#",
+    timeline: "Nov 2023",
+    teamSize: "2 members",
     details:
-      "Built a custom IoT device with environmental sensors to collect data such as temperature, humidity, and air quality. Preprocessed the data and applied ML models to forecast environmental and traffic trends. Developed an Android app to visualize sensor data and deliver real-time predictions. Timeline: Nov 2023. Team size: 2 members.",
-  },
+      "Built a custom IoT device with environmental sensors to collect temperature, humidity, and air quality data. Preprocessed the data and applied ML models to forecast trends. Developed an Android app to visualize sensor data and provide real-time predictions.\n\nTimeline: Nov 2023\nTeam size: 2 members."
+  }
 ];
+
 
 
 const showcaseWrapper = document.getElementById("showcaseWrapper");
@@ -458,25 +474,26 @@ function createCardHTML(project) {
         </div>`
       : "";
 
-  return `
-    <div class="project-image">
-  <i class="fas fa-robot"></i>
-  <!-- NEW: The permanent call-to-action -->
-  <div class="project-view-more">
-    <i class="fas fa-search-plus"></i>
-    <span>View Details</span>
+// <div class="project-view-more">
+//     <i class="fas fa-search-plus"></i>
+//     <span>View Details</span>
+//   </div>
+return `
+  <div class="project-media">
+    ${project.video 
+      ? `<video class="project-video" src="${project.video}" autoplay muted loop playsinline></video>` 
+      : `<img class="project-image" src="${project.image}" alt="${project.title}">`}
   </div>
-</div>
-    <div class="project-content">
-      <h3 class="project-title">${project.title}</h3>
+  <div class="project-content">
+    <h3 class="project-title">${project.title}</h3>
 
+    ${techPreview}
 
-      ${techPreview}
-
-      <!-- notice / button -->
-
-    </div>
+    <!-- subtle hover notice -->
+    <div class="view-more-notice" aria-hidden="true">Click to explore details →</div>
+  </div>
 `;
+
     
 }
 
@@ -502,35 +519,45 @@ function init() {
   });
   updateShowcase();
 }
-
 function updateShowcase() {
   const cards = document.querySelectorAll(".project-card");
   const indicators = document.querySelectorAll(".indicator");
-  const offset = 35; // Percentage for horizontal translation
-  const rotation = 30; // Degrees for rotation
-  const scale = 0.8; // Scale for non-active cards
+  const offset = 35;
+  const rotation = 30;
+  const scale = 0.8;
 
   cards.forEach((card, index) => {
     const position = index - activeIndex;
     let transform;
 
-    if (position === 0) {
-      transform = `translateX(0) rotateY(0) scale(1)`;
-      card.style.zIndex = cards.length + 1;
-      card.style.filter = 'none'
+    const video = card.querySelector("video");
 
+    if (position === 0) {
+      // Active
+      transform = `translateX(0) rotateY(0) scale(1)`;
+      card.style.filter = 'none';
+
+      // Try to play video if present
+      if (video) {
+        video.muted = true;         // ensure autoplay isn’t blocked
+        video.playsInline = true;   // iOS inline
+        video.play().catch(()=>{});
+      }
     } else {
+      // Non-active
       const sign = Math.sign(position);
-      transform = `translateX(${position * offset+ sign*30}%) rotateY(${ -sign * rotation}deg) scale(${scale})`;
-      card.style.zIndex = cards.length - Math.abs(position);
-      card.style.filter = `brightness(0.5) saturate(0.8) blur(${Math.abs(position) * 0.5}px)`
+      transform = `translateX(${position * offset + sign * 30}%) rotateY(${-sign * rotation}deg) scale(${scale})`;
+      card.style.filter = `brightness(0.5) saturate(0.8) blur(${Math.abs(position) * 0.5}px)`;
+
+      // Pause video if present
+      if (video) video.pause();
     }
 
-    card.style.setProperty("--transform", transform);
-    card.style.transform = `translate(-50%, -50%) ${transform}`;
+    card.style.setProperty("--transform-base", transform);
+    card.style.transform = `translate(-50%, -50%) var(--transform-base)`;
+    
     card.style.opacity = Math.abs(position) > 2 ? "0" : "1";
     card.style.zIndex = projects.length - Math.abs(position);
-
     card.classList.toggle("active", index === activeIndex);
   });
 
@@ -552,28 +579,39 @@ function handleCardClick(index) {
     updateActive(index);
   }
 }
-
 function showProjectModal(index) {
   const project = projects[index];
   modalBody.innerHTML = `
-     <div class="modal-image"><img src="${project.image}" alt="${
-    project.title
-  }"></div>
-     <h2 class="modal-title">${project.title}</h2>
-     <p class="modal-description">${project.details}</p>
-     <div class="modal-tech">${project.technologies
-       .map((tech) => `<span class="tech-tag">${tech}</span>`)
-       .join("")}</div>
-     <div class="modal-links">
-         <a href="${
-           project.liveUrl
-         }" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> View Live Demo</a>
-         <a href="${
-           project.codeUrl
-         }" class="project-link" target="_blank"><i class="fab fa-github"></i> View Source Code</a>
-     </div>`;
+    <div class="modal-media">
+      ${project.video 
+        ? `<video class="modal-video" src="${project.video}" controls autoplay muted playsinline></video>` 
+        : `<img class="modal-image" src="${project.image}" alt="${project.title}">`}
+    </div>
+    <h2 class="modal-title">${project.title}</h2>
+    <div class="modal-meta">
+      <p><strong>Timeline:</strong> ${project.timeline}</p>
+      <p><strong>Team Size:</strong> ${project.teamSize}</p>
+    </div>
+    <p class="modal-description">${project.details}</p>
+
+    
+
+    <div class="modal-tech">
+      ${project.technologies
+        .map((tech) => `<span class="tech-tag">${tech}</span>`)
+        .join("")}
+    </div>
+    <div class="modal-links">
+      <a href="${project.liveUrl}" class="project-link" target="_blank">
+        <i class="fas fa-external-link-alt"></i> View Live Demo
+      </a>
+      <a href="${project.codeUrl}" class="project-link" target="_blank">
+        <i class="fab fa-github"></i> View Source Code
+      </a>
+    </div>`;
   modal.classList.add("active");
 }
+
 
 function closeModal() {
   modal.classList.remove("active");
@@ -656,3 +694,58 @@ init();
   // escape key to close
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) window.closeModal(); });
 })();
+
+// ... existing code ...
+
+// =======================
+// Project Animation
+// =======================
+const projectTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".project-section-title",
+    start: "top 75%",
+    end: "bottom 38%",
+    toggleActions: "play none none none",
+  },
+});
+const projectTitle = document.querySelector(".project-section-title");
+projectTl.add(scrambleText(projectTitle, undefined, 2), 0);
+
+const projectSubTitle = document.querySelector(".project-section-subtitle");
+projectTl.from(
+  projectSubTitle,
+  {
+    opacity: 0,
+    filter: "blur(20px)",
+    duration: 1,
+  },
+  1
+);
+
+// =======================
+// Project Cards Animation
+// =======================
+const projectCardsTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".showcase-container",
+    start: "top 75%",
+    end: "bottom 30%",
+    toggleActions: "play none none none",
+  },
+});
+
+// Animate project cards with stagger effect
+const projectCards = document.querySelectorAll(".project-card");
+projectCards.forEach((card, index) => {
+  projectCardsTl.from(
+    card,
+    {
+      opacity: 0,
+      x: -30*index,
+      scale: 0.9,
+      duration: 0.3,
+      ease: "power2.out",
+    },
+    index * 0.15 // Stagger each card by 0.15 seconds
+  );
+});

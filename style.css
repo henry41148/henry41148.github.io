@@ -802,63 +802,27 @@ section#projects{
 .project-card {
   position: absolute;
   width: 430px;
-  height: 460px;
+  height: 500px;
   top: 50%;
   left: 50%;
   
   background: linear-gradient(145deg, var(--card-bg-start), var(--card-bg-end));
-  border-radius: 8px;
+  border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   filter: brightness(0.5) saturate(0.8);
 
   /* A single, unified transition for all cards */
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-              box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-              filter 0.4s ease,
-              opacity 0.4s ease;
-
-  /* This is the base transform for the showcase view, set by JavaScript */
-  transform: var(--showcase-transform, translate(-50%, -50%));
+  transition: all 0.3s ease;
 }
 
 .project-card.active {
   filter: brightness(1) saturate(1);
   z-index: 10;
+  box-shadow: 0 0 10px #64ffdb6c;
 }
 
-/* --- UNIFIED HOVER EFFECT FOR ALL CARDS --- */
-/* This now provides the satisfying "lift and grow" effect to ANY card */
-.project-card:hover {
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-  /* We apply the hover transform ON TOP of the existing showcase transform */
-  transform: var(--showcase-transform, translate(-50%, -50%)) translateY(-10px) scale(1.03);
-}
-
-/* We removed the ::after overlay as the transform provides enough feedback */
-
-
-/* --- NEW: The Call-to-Action Element --- */
-.project-view-more {
-  position: absolute;
-  inset: 0; /* Cover the entire image area */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  
-  background: rgba(0, 0, 0, 0.243); /* Dark overlay is now part of this element */
-  color: #fff;
-  font-weight: 600;
-  
-  /* Start subtle and semi-transparent, ALWAYS visible */
-  opacity: 0;
-  
-  transition: opacity 0.3s ease;
-  pointer-events: none; /* Let clicks pass through to the card */
-}
 
 /* On hover, the call-to-action becomes fully visible */
 .project-card:hover .project-view-more {
@@ -873,17 +837,12 @@ section#projects{
   font-size: 1.1rem;
 }
 
-.project-card:not(.active):hover {
-  transform: var(--transform) translateY(-10px);
-  filter: brightness(0.7) saturate(0.9);
-}
-
-.project-image {
+.project-media {
   height: 250px;
   overflow: hidden;
 }
 
-.project-image img {
+.project-media img,  .project-media video{
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -950,16 +909,31 @@ section#projects{
   line-height: 1.45;
   margin: 0;
 }
+/* Notice baseline (hidden) */
+.view-more-notice {
+opacity: 0;
+text-align: center;
+font-size: 0.8em;
+margin-top:10px;
+}
 
+/* Show only on the active card */
+.project-card.active .view-more-notice {
+  opacity: 1;
+}
 
 
 /* Optional: compact tech tag preview styling */
 .tech-preview { display:flex; gap:8px; flex-wrap:wrap; margin: 10px 0; }
 .tech-preview .tech-tag { padding:4px 8px; font-size:0.8rem; border-radius:999px; background: rgba(100,255,218,0.06); color:var(--secondary); }
 
-.project-card:hover .overlay {
-  opacity: 1;
-  transform: translateY(0);
+.project-card.active:hover {
+  transform: var(--transform) translateY(-10px) scale(1.02);
+  box-shadow: 0 0px 25px #64ffdb80;
+}
+
+.project-card:hover {
+  box-shadow: 0 0px 25px #64ffdb45;  /* optional: makes it stand out */
 }
 .navigation-controls {
   display: flex;
@@ -1033,7 +1007,7 @@ section#projects{
 
 /* modal box (centered) */
 .modal .modal-content {
-  width: min(920px, 94%);
+  width: 70%;
   max-height: 90vh;
   overflow-y: auto;
   background: linear-gradient(145deg, #1a1a2e, #16213e);
@@ -1060,20 +1034,27 @@ section#projects{
   cursor: pointer;
   z-index: 10;
 }
-.modal-image {
+.modal-media {
   height: 300px;
-  border-radius: 12px;
   margin-bottom: 1.5rem;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
-.modal-image img {
-  width: 100%;
+.modal-media img, .modal-media video {
+  width: 66%;
+
   height: 100%;
   object-fit: cover;
+  border-radius: 12px;
+
 }
 .modal-title {
   font-size: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+.modal-meta{
+  margin-bottom: px;
 }
 .modal-description {
   font-size: 1.1rem;
