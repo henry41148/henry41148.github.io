@@ -140,11 +140,11 @@ elementHero.forEach((el, index) => {
       el,
       {
         opacity: 0,
-        y: 100,
-        duration: 0.3,
-        stagger: 0.1,
+        filter: "blur(16px)",
+        y: 70,
+        duration: 0.5,
       },
-      startTime + 1.4
+      index * 0.2 + 2.9
     ); // Stagger the button appearance slightly
   }
 });
@@ -356,9 +356,10 @@ const projects = [
       "A Unity-based 2D platformer featuring character controls, enemies, collectibles, and level progression.",
     image: "assets/images/project-thumbnails/2D-Platformer.png",
     video: "assets/images/project-thumbnails/2D-Platformer.mp4",
+    fullDemoVideo: "",
     technologies: ["Unity", "C#", "2D Physics", "Tilemap", "Animation", "Collision System"],
-    liveUrl: "#",
-    codeUrl: "#",
+    liveUrl: "",
+    codeUrl: "",
     timeline: "15 May – 1 June 2025",
     teamSize: "1 member",
     details:
@@ -371,9 +372,10 @@ const projects = [
       "A lightweight Unity demo featuring sculpted terrain, painted materials, and first-person exploration.",
     image: "assets/images/project-thumbnails/3D-Terrain-Explorer.png",
     video: "assets/images/project-thumbnails/Terrain.mp4",
+    fullDemoVideo: "",
     technologies: ["Unity", "C#", "Terrain Tools", "First-Person Controller", "Lighting & Materials"],
-    liveUrl: "#",
-    codeUrl: "#",
+    liveUrl: "",
+    codeUrl: "",
     timeline: "10 July – 5 August 2025",
     teamSize: "1 member",
     details:
@@ -385,9 +387,10 @@ const projects = [
     description:
       "A research-focused project replicating and validating GNN models for large-scale traffic forecasting.",
     image: "assets/images/project-thumbnails/GNN.png",
+    fullDemoVideo: "",
     technologies: ["PyTorch", "Graph Neural Networks", "Python", "Machine Learning"],
-    liveUrl: "#",
-    codeUrl: "#",
+    liveUrl: "",
+    codeUrl: "",
     timeline: "Dec 2024 – Feb 2025",
     teamSize: "2 members",
     details:
@@ -400,9 +403,10 @@ const projects = [
       "A chatbot trained on 45,000+ Q&A pairs to suggest possible conditions from symptoms.",
     image: "assets/images/project-thumbnails/Chatbot.png",
     video: "assets/images/project-thumbnails/Chatbot.mp4",
+    fullDemoVideo: "",
     technologies: ["Python", "Transformers", "Hugging Face", "Gradio", "LLM"],
     liveUrl: "https://huggingface.co/spaces/henry41148/henry-space",
-    codeUrl: "#",
+    codeUrl: "",
     timeline: "Sep 2024 – Oct 2024",
     teamSize: "1 member",
     details:
@@ -415,7 +419,7 @@ const projects = [
       "Implementation of the PCY algorithm in PySpark for scalable analysis of frequent item pairs.",
     image: "assets/images/project-thumbnails/Bigdata.png",
     technologies: ["PySpark", "Big Data", "HDFS", "Python"],
-    liveUrl: "#",
+    liveUrl: "",
     codeUrl: "https://github.com/henry41148/BigData-PCY-Pyspark",
     timeline: "Mar 2024",
     teamSize: "5 members",
@@ -428,6 +432,7 @@ const projects = [
     description:
       "Combined custom IoT hardware, ML models, and an Android app to deliver weather and traffic predictions.",
     image: "assets/images/project-thumbnails/IOT.png",
+    fullDemoVideo: "",
     technologies: ["IoT", "Python", "Machine Learning", "Android", "Java"],
     liveUrl: "https://youtu.be/fEdR2XuSrMw",
     codeUrl: "#",
@@ -581,36 +586,48 @@ function handleCardClick(index) {
 }
 function showProjectModal(index) {
   const project = projects[index];
+
+  // Build media HTML
+  const mediaHTML = project.video
+    ? `<video class="modal-video" src="${project.video}" controls autoplay muted playsinline></video>`
+    : `<img class="modal-image" src="${project.image}" alt="${project.title}">`;
+
+  // Build technology tags
+  const techHTML = project.technologies
+    .map((tech) => `<span class="tech-tag">${tech}</span>`)
+    .join("");
+
+  // Build links HTML conditionally
+  let linksHTML = "";
+  if (project.liveUrl) {
+    linksHTML += `
+      <a href="${project.liveUrl}" class="project-link" target="_blank">
+        <i class="fas fa-external-link-alt"></i> View Live Demo
+      </a>`;
+  }
+  if (project.codeUrl) {
+    linksHTML += `
+      <a href="${project.codeUrl}" class="project-link" target="_blank">
+        <i class="fab fa-github"></i> View Source Code
+      </a>`;
+  }
+
+  // Set modal content
   modalBody.innerHTML = `
-    <div class="modal-media">
-      ${project.video 
-        ? `<video class="modal-video" src="${project.video}" controls autoplay muted playsinline></video>` 
-        : `<img class="modal-image" src="${project.image}" alt="${project.title}">`}
-    </div>
+    <div class="modal-media">${mediaHTML}</div>
     <h2 class="modal-title">${project.title}</h2>
     <div class="modal-meta">
       <p><strong>Timeline:</strong> ${project.timeline}</p>
       <p><strong>Team Size:</strong> ${project.teamSize}</p>
     </div>
     <p class="modal-description">${project.details}</p>
+    <div class="modal-tech">${techHTML}</div>
+    ${linksHTML ? `<div class="modal-links">${linksHTML}</div>` : ""}
+  `;
 
-    
-
-    <div class="modal-tech">
-      ${project.technologies
-        .map((tech) => `<span class="tech-tag">${tech}</span>`)
-        .join("")}
-    </div>
-    <div class="modal-links">
-      <a href="${project.liveUrl}" class="project-link" target="_blank">
-        <i class="fas fa-external-link-alt"></i> View Live Demo
-      </a>
-      <a href="${project.codeUrl}" class="project-link" target="_blank">
-        <i class="fab fa-github"></i> View Source Code
-      </a>
-    </div>`;
   modal.classList.add("active");
 }
+
 
 
 function closeModal() {
@@ -695,7 +712,6 @@ init();
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) window.closeModal(); });
 })();
 
-// ... existing code ...
 
 // =======================
 // Project Animation
@@ -718,6 +734,8 @@ projectTl.from(
     opacity: 0,
     filter: "blur(20px)",
     duration: 1,
+    ease: "power2.inOut",
+
   },
   1
 );
@@ -741,10 +759,10 @@ projectCards.forEach((card, index) => {
     card,
     {
       opacity: 0,
-      x: -30*index,
+      x: -25*index,
       scale: 0.9,
-      duration: 0.3,
-      ease: "power2.out",
+      duration: 0.4,
+      ease: "cubic-bezier(0.25, 0.1, 0.25, 0.25)",
     },
     index * 0.15 // Stagger each card by 0.15 seconds
   );

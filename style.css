@@ -502,6 +502,7 @@ main {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  margin-right: 20px;
 }
 .btn.btn-1{
   background-color: #64ffdb81;
@@ -535,6 +536,9 @@ section {
 .section-header {
   margin-bottom: 80px;
   text-align: center;
+}
+.project-header{
+  margin-top: 100px;
 }
 .section-header.project-header{
   margin-bottom: 20px;
@@ -574,6 +578,7 @@ section {
 }
 .about-text {
   width: 50%;
+
 }
 .about-text h3 {
   font-size: 2rem;
@@ -1037,14 +1042,14 @@ margin-top:10px;
   z-index: 10;
 }
 .modal-media {
-  height: 300px;
+  height: 350px;
   margin-bottom: 1.5rem;
   overflow: hidden;
   display: flex;
   justify-content: center;
 }
 .modal-media img, .modal-media video {
-  width: 66%;
+  width: 100%;
 
   height: 100%;
   object-fit: cover;
@@ -1129,19 +1134,21 @@ margin-top:10px;
   background: rgba(2, 12, 27, 0.95); /* same dark base */
   padding: 60px 10% 20px;
   border-top: 1px solid rgba(100, 255, 218, 0.15);
+  display: flex;
+  justify-content: center;
 }
 
 /* Main layout */
 .footer-container {
-  display: grid;
-  width: fit-content;
-  grid-template-columns: 1fr auto;
+  display: flex;
+  justify-content: center;
   gap: 50px;
   align-items: start;
 }
 
 /* Left side */
 .footer-about {
+  width: 55%;
   color: var(--light);
 }
 .footer-title {
@@ -1159,6 +1166,7 @@ margin-top:10px;
 .footer-contact {
   display: flex;
   flex-direction: column;
+  width: 40%;
   gap: 15px;
 }
 .contact-item {
