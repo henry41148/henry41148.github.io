@@ -129,7 +129,6 @@ main {
   filter: blur(var(--hero-blur)); /* blur effect */
   transform-origin: center center;
   will-change: transform, opacity, filter;
-  pointer-events: none;
 }
 
 /* --- START: GLITCH EFFECT CODE --- */
@@ -504,7 +503,10 @@ main {
   overflow: hidden;
   z-index: 1;
 }
-
+.btn.btn-1{
+  background-color: #64ffdb81;
+  color: white;
+}
 .btn::before {
   content: "";
   position: absolute;

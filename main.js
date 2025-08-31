@@ -141,7 +141,7 @@ elementHero.forEach((el, index) => {
       {
         opacity: 0,
         y: 100,
-        duration: 0.6,
+        duration: 0.3,
         stagger: 0.1,
       },
       startTime + 1.4
