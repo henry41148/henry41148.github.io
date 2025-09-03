@@ -427,12 +427,39 @@ const projects = [
       "Analyzed shopping basket data using the PCY algorithm to identify frequent item pairs and generate association rules. Implemented a PySpark pipeline with preprocessing, hash bucket optimization, and multi-pass scanning. Leveraged distributed computing for scalable analysis, simulating real-world market basket scenarios.\n\nTimeline: Mar 2024\nTeam size: 5 members."
   },
   {
+    title: "POS System for Phone Store",
+    summary: "Developed a POS web application for managing phone store sales, inventory, customers, and employees.",
+    description:
+      "A point-of-sale system built with Node.js, Express.js, and Express-Handlebars, connected to MongoDB/Atlas. The application supports product catalog management, customer records, sales transactions, and employee administration. Features include login with role-based access (admin/employee), order and invoice management, real-time statistics with charts, and checkout with barcode scanning and payment handling.",
+    image: "assets/images/project-thumbnails/NodeJS PhoneStore.png",
+    video: "",
+    fullDemoVideo: "https://www.youtube.com/watch?v=MynekXymzh0",
+    technologies: [
+      "Node.js",
+      "Express.js",
+      "Express-Handlebars",
+      "MongoDB",
+      "Mongoose",
+      "MongoDB Atlas",
+      "Authentication System",
+      "Role-based Access Control",
+      "Chart/Statistics Visualization"
+    ],
+    liveUrl: "",
+    codeUrl: "",
+    timeline: "",
+    teamSize: "3",
+    details:
+      "Designed and implemented a POS system tailored for a phone store. The system allows employees to manage sales, customers, and products, while admins can oversee staff accounts and permissions. Implemented features include order and invoice tracking, product search (by name or barcode), dynamic sales statistics filtered by date ranges, and checkout with automatic total and change calculation. Employees can update profiles and change passwords, while admins can add new staff and activate accounts via email verification. Data is stored in MongoDB with cloud integration through MongoDB Atlas.\n\nTimeline: \nTeam size: Group project."
+  },
+  
+  {
     title: "Weather and Traffic Forecasting Application",
     summary: "Built an IoT + ML Android app for real-time forecasting.",
     description:
       "Combined custom IoT hardware, ML models, and an Android app to deliver weather and traffic predictions.",
     image: "assets/images/project-thumbnails/IOT.png",
-    fullDemoVideo: "",
+    fullDemoVideo: "https://youtu.be/fEdR2XuSrMw",
     technologies: ["IoT", "Python", "Machine Learning", "Android", "Java"],
     liveUrl: "https://youtu.be/fEdR2XuSrMw",
     codeUrl: "#",
@@ -475,7 +502,7 @@ function createCardHTML(project) {
   const techPreview =
     project.technologies && project.technologies.length
       ? `<div class="tech-preview">
-          ${project.technologies.slice(0, 4).map(t => `<span class="tech-tag">${t}</span>`).join('')}
+          ${project.technologies.slice(0, 3).map(t => `<span class="tech-tag">${t}</span>`).join('')}
         </div>`
       : "";
 
@@ -602,13 +629,19 @@ function showProjectModal(index) {
   if (project.liveUrl) {
     linksHTML += `
       <a href="${project.liveUrl}" class="project-link" target="_blank">
-        <i class="fas fa-external-link-alt"></i> View Live Demo
+        <i class="fas fa-external-link-alt"></i>Live Demo
+      </a>`;
+  }
+  if (project.fullDemoVideo) {
+    linksHTML += `
+      <a href="${project.fullDemoVideo}" class="project-link" target="_blank">
+        <i class="fab fa-youtube"></i> Full Demo video
       </a>`;
   }
   if (project.codeUrl) {
     linksHTML += `
       <a href="${project.codeUrl}" class="project-link" target="_blank">
-        <i class="fab fa-github"></i> View Source Code
+        <i class="fab fa-github"></i> Source Code
       </a>`;
   }
 
