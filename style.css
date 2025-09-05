@@ -34,7 +34,24 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
 }
+body::-webkit-scrollbar {
+  width: 6px; 
+}
 
+body::-webkit-scrollbar-track {
+  background: transparent; /* track background */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #3fb096;/* thumb color, semi-transparent */
+  border-radius: 4px;
+  border: none;
+  transition: background-color 0.2s ease-in-out;
+}
+body::-webkit-scrollbar-thumb:hover {
+  /* Make it slightly brighter or a different color on hover */
+  background-color: #55d4b8; 
+}
 .particles-bg {
   position: fixed;
   top: 0;
@@ -1077,6 +1094,43 @@ margin-top:10px;
   flex-wrap: wrap;
   gap: 0.7rem;
   margin-bottom: 2rem;
+}
+
+/* Target the scrollbar on the .modal-content element */
+.modal-content::-webkit-scrollbar {
+  width: 8px; /* Width of the entire scrollbar */
+}
+
+/* Style the "track" - the part the scrollbar moves along */
+.modal-content::-webkit-scrollbar-track {
+  /* Make the track transparent to match the background */
+  background: transparent; 
+  
+  /* OR, to match the background color exactly */
+  /* background: #2c3e50; */
+}
+
+/* Style the "thumb" - the draggable part of the scrollbar */
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: #888;    /* A nice grey for the thumb */
+  border-radius: 20px;       /* Round the corners */
+  border: 2px solid #2c3e50; /* Creates padding around thumb, using the modal background color */
+}
+
+/* Optional: Style the thumb on hover */
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darken the thumb on hover */
+}
+
+
+/* 
+ * 3. ADD FIREFOX SUPPORT
+ * Firefox uses a newer, simpler standard.
+ */
+.modal-content {
+  /* The first color is the thumb, the second is the track */
+  scrollbar-color: #888 transparent; /* thumb track */
+  scrollbar-width: thin;
 }
 .tech-tag {
   background: rgba(110, 69, 226, 0.2);
