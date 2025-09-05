@@ -360,7 +360,7 @@ const projects = [
     technologies: ["Unity", "C#", "2D Physics", "Tilemap", "Animation", "Collision System"],
     liveUrl: "",
     codeUrl: "",
-    timeline: "15 May – 1 June 2025",
+    timeline: "May 15 – May 20 2025",
     teamSize: "1 member",
     details:
       "Designed and implemented a side-scrolling platformer inspired by Super Mario, with player movement, jump mechanics, coin collection, and enemy AI. Applied Unity’s 2D physics for smooth controls and collision handling. Built multiple levels with increasing difficulty and a scoring system.\n\nTimeline: 15 May – 1 June 2025\nTeam size: 1 member."
@@ -376,7 +376,7 @@ const projects = [
     technologies: ["Unity", "C#", "Terrain Tools", "First-Person Controller", "Lighting & Materials"],
     liveUrl: "",
     codeUrl: "",
-    timeline: "10 July – 5 August 2025",
+    timeline: "May 25 – June 3 2025",
     teamSize: "1 member",
     details:
       "Built a terrain-focused prototype with sculpted heightmaps, textured layers, and scattered vegetation. Implemented a simple first-person controller with smooth WASD movement and mouse-look controls. Applied baked lighting for performance and added a few collectibles for interactivity.\n\nTimeline: 10 July – 5 August 2025\nTeam size: 1 member."
@@ -461,8 +461,8 @@ const projects = [
     image: "assets/images/project-thumbnails/IOT.png",
     fullDemoVideo: "https://youtu.be/fEdR2XuSrMw",
     technologies: ["IoT", "Python", "Machine Learning", "Android", "Java"],
-    liveUrl: "https://youtu.be/fEdR2XuSrMw",
-    codeUrl: "#",
+    liveUrl: "",
+    codeUrl: "",
     timeline: "Nov 2023",
     teamSize: "2 members",
     details:
