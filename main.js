@@ -363,7 +363,7 @@ const projects = [
     timeline: "May 15 – May 20 2025",
     teamSize: "1 member",
     details:
-      "Designed and implemented a side-scrolling platformer inspired by Super Mario, with player movement, jump mechanics, coin collection, and enemy AI. Applied Unity’s 2D physics for smooth controls and collision handling. Built multiple levels with increasing difficulty and a scoring system.\n\nTimeline: 15 May – 1 June 2025\nTeam size: 1 member."
+      "Designed and implemented a side-scrolling platformer inspired by Super Mario, with player movement, jump mechanics, coin collection, and enemy AI. Applied Unity’s 2D physics for smooth controls and collision handling. Built multiple levels with increasing difficulty and a scoring system."
   },
   {
     title: "3D Terrain Explorer (First-Person Controller)",
@@ -379,7 +379,23 @@ const projects = [
     timeline: "May 25 – June 3 2025",
     teamSize: "1 member",
     details:
-      "Built a terrain-focused prototype with sculpted heightmaps, textured layers, and scattered vegetation. Implemented a simple first-person controller with smooth WASD movement and mouse-look controls. Applied baked lighting for performance and added a few collectibles for interactivity.\n\nTimeline: 10 July – 5 August 2025\nTeam size: 1 member."
+      "Built a terrain-focused prototype with sculpted heightmaps, textured layers, and scattered vegetation. Implemented a simple first-person controller with smooth WASD movement and mouse-look controls. Applied baked lighting for performance and added a few collectibles for interactivity."
+  },
+  {
+    title: "Flask News Application",
+    summary: "A dynamic news website built with Flask, featuring a modern UI and NewsAPI integration.",
+    description:
+      "A responsive news web application that fetches and displays real-time articles, featuring search, categories, and a light/dark mode.",
+    image: "assets/images/project-thumbnails/Flask-News-App.png",
+    video: "",
+    fullDemoVideo: "",
+    technologies: ["Python", "Flask", "JavaScript", "HTML5", "CSS3", "REST API", "NewsAPI"],
+    liveUrl: "",
+    codeUrl: "https://github.com/henry41148/flask-news-app",
+    timeline: "September 2025",
+    teamSize: "1 member",
+    details:
+      "Developed a server-side rendered news application using Python and the Flask web framework. The backend fetches real-time data from the NewsAPI based on user searches or category selections. The frontend is built with dynamic HTML/CSS and vanilla JavaScript, featuring a fully responsive design, modern glassmorphism effects, and a seamless light/dark mode toggle. Implemented content filtering to improve the quality of displayed news."
   },
   {
     title: "Spatio-Temporal Graph Neural Networks for Traffic Forecasting",
@@ -394,7 +410,7 @@ const projects = [
     timeline: "Dec 2024 – Feb 2025",
     teamSize: "2 members",
     details:
-      "Conducted an in-depth literature review and hands-on implementation of GNN architectures for traffic forecasting. Benchmarked models such as DDGCRN, STWave, and AGCRN on real-world traffic datasets (PeMS) using MAE, RMSE, and MAPE as evaluation metrics. Replicated and validated results, achieving comparable performance on large-scale benchmarks.\n\nTimeline: Dec 2024 – Feb 2025\nTeam size: 2 members."
+      "Conducted an in-depth literature review and hands-on implementation of GNN architectures for traffic forecasting. Benchmarked models such as DDGCRN, STWave, and AGCRN on real-world traffic datasets (PeMS) using MAE, RMSE, and MAPE as evaluation metrics. Replicated and validated results, achieving comparable performance on large-scale benchmarks."
   },
   {
     title: "Medical Chatbot",
@@ -410,7 +426,7 @@ const projects = [
     timeline: "Sep 2024 – Oct 2024",
     teamSize: "1 member",
     details:
-      "Collected and structured 45,000+ doctor–patient interactions from iCliniq to build a custom dataset. Fine-tuned a T5 transformer model to map symptoms to conditions and generate natural-language answers. Deployed a live chatbot using Gradio on Hugging Face Spaces for real-time responses.\n\nTimeline: Sep 2024 – Oct 2024\nTeam size: 1 member."
+      "Collected and structured 45,000+ doctor–patient interactions from iCliniq to build a custom dataset. Fine-tuned a T5 transformer model to map symptoms to conditions and generate natural-language answers. Deployed a live chatbot using Gradio on Hugging Face Spaces for real-time responses."
   },
   {
     title: "Big Data Analytics: PCY Implementation in PySpark",
@@ -424,7 +440,7 @@ const projects = [
     timeline: "Mar 2024",
     teamSize: "5 members",
     details:
-      "Analyzed shopping basket data using the PCY algorithm to identify frequent item pairs and generate association rules. Implemented a PySpark pipeline with preprocessing, hash bucket optimization, and multi-pass scanning. Leveraged distributed computing for scalable analysis, simulating real-world market basket scenarios.\n\nTimeline: Mar 2024\nTeam size: 5 members."
+      "Analyzed shopping basket data using the PCY algorithm to identify frequent item pairs and generate association rules. Implemented a PySpark pipeline with preprocessing, hash bucket optimization, and multi-pass scanning. Leveraged distributed computing for scalable analysis, simulating real-world market basket scenarios."
   },
   {
     title: "POS System for Phone Store",
@@ -450,7 +466,7 @@ const projects = [
     timeline: "",
     teamSize: "3",
     details:
-      "Designed and implemented a POS system tailored for a phone store. The system allows employees to manage sales, customers, and products, while admins can oversee staff accounts and permissions. Implemented features include order and invoice tracking, product search (by name or barcode), dynamic sales statistics filtered by date ranges, and checkout with automatic total and change calculation. Employees can update profiles and change passwords, while admins can add new staff and activate accounts via email verification. Data is stored in MongoDB with cloud integration through MongoDB Atlas.\n\nTimeline: \nTeam size: Group project."
+      "Designed and implemented a POS system tailored for a phone store. The system allows employees to manage sales, customers, and products, while admins can oversee staff accounts and permissions. Implemented features include order and invoice tracking, product search (by name or barcode), dynamic sales statistics filtered by date ranges, and checkout with automatic total and change calculation. Employees can update profiles and change passwords, while admins can add new staff and activate accounts via email verification. Data is stored in MongoDB with cloud integration through MongoDB Atlas."
   },
   
   {
@@ -466,7 +482,7 @@ const projects = [
     timeline: "Nov 2023",
     teamSize: "2 members",
     details:
-      "Built a custom IoT device with environmental sensors to collect temperature, humidity, and air quality data. Preprocessed the data and applied ML models to forecast trends. Developed an Android app to visualize sensor data and provide real-time predictions.\n\nTimeline: Nov 2023\nTeam size: 2 members."
+      "Built a custom IoT device with environmental sensors to collect temperature, humidity, and air quality data. Preprocessed the data and applied ML models to forecast trends. Developed an Android app to visualize sensor data and provide real-time predictions."
   }
 ];
 
